@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Cart - Zenvora</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #fcefdc;
+        margin: 0;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+    }
+    .cart-page {
+        max-width: 800px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .cart-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+    }
+    .cart-item img {
+        width: 80px;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+    .cart-item-details {
+        flex: 1;
+    }
+    .total {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: right;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Your Shopping Cart</h1>
+<div class="cart-page" id="cartPage">
+    <div id="cartList"></div>
+    <div class="total">Total: ₹<span id="totalPrice">0</span></div>
+</div>
+
+<script>
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartList = document.getElementById('cartList');
+    const totalPrice = document.getElementById('totalPrice');
+    let total = 0;
+
+    cart.forEach(item => {
+        total += item.price;
+        cartList.innerHTML += `
+            <div class="cart-item">
+                <img src="${item.img}">
+                <div class="cart-item-details">
+                    <div>${item.title}</div>
+                    <div>₹${item.price}</div>
+                </div>
+            </div>
+        `;
+    });
+
+    totalPrice.innerText = total;
+</script>
+
+</body>
+</html>
