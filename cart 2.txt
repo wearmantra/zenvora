@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Zenvora — Cart</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{--brand:#ff006e;--bg:#f8f9fa}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Segoe UI',Arial;background:var(--bg);color:#111}
+    header{background:#1e1f26;color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center}
+    .container{max-width:1100px;margin:18px auto;padding:0 18px}
+    .cart-wrap{background:#fff;padding:16px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.04)}
+    .cart-item{display:flex;gap:12px;align-items:center;padding:12px;border-bottom:1px solid #f0f0f0}
+    .cart-item img{width:84px;height:84px;object-fit:cover;border-radius:8px}
+    .item-meta{flex:1}
+    .qty-controls{display:flex;align-items:center;gap:8px;margin-top:8px}
+    .qty-controls button{width:36px;height:36px;border-radius:8px;border:1px solid #eee;background:#fff;cursor:pointer}
+    .summary{margin-top:12px;padding:12px;background:#fafafa;border-radius:8px;display:flex;justify-content:space-between;align-items:center}
+    .btn-primary{background:var(--brand);color:#fff;padding:10px 14px;border:none;border-radius:8px;cursor:pointer}
+    .remove-btn{background:none;border:none;color:#d00;cursor:pointer}
+    .empty{padding:20px;text-align:center;color:#666}
+  </style>
+</head>
+<body>
+  <header>
+    <div style="font-weight:700">ZENVORA</div>
+    <div><a href="index.html" style="color:#fff;text-decoration:none">Continue Shopping</a></div>
+  </header>
+
+  <div class="container">
+    <div class="cart-wrap" id="cartWrap">
+      <h2>Your Cart</h2>
+      <div id="items"></div>
+
+      <div id="summary" style="display:none">
+        <div class="summary">
+          <div><strong>Subtotal:</strong> ₹<span id="subtotal">0</span></div>
+          <div><button class="btn-primary" id="checkoutBtn">Proceed to Checkout</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  function getCart(){ return JSON.parse(localStorage.getItem('zen_cart')||'[]'); }
+  function saveCart(cart){ localStorage.setItem('zen_cart', JSON.stringify(cart)); }
+  function renderCart(){
+    const itemsDiv = document.getElementById('items');
+    const cart = getCart();
+    itemsDiv.innerHTML = '';
+    if(cart.length === 0){
+      itemsDiv.innerHTML = '<div class="empty">Your cart is empty.<br><a href="index.html">Go to shop</a></div>';
+      document.getElementById('summary').style.display = 'none';
+      return;
+    }
+    let subtotal = 0;
+    cart.forEach((it, idx)=>{
+      const row = document.createElement('div');
+      row.className = 'cart-item';
+      row.innerHTML = `
+        <img src="${it.img || 'https://via.placeholder.com/84'}" alt="${it.title}">
+        <div class="item-meta">
+          <div style="font-weight:700">${it.title}</div>
+          <div style="color:var(--muted);margin-top:6px">${it.size ? 'Size: '+it.size : ''} ${it.colorLabel ? ' • '+it.colorLabel : ''}</div>
+          <div style="margin-top:8px">Price: ₹${it.price} × <strong id="q${idx}">${it.qty}</strong></div>
+          <div class="qty-controls" style="margin-top:8px">
+            <button onclick="updateQty(${idx}, ${Math.max(1, it.qty-1)})">−</button>
+            <input type="number" value="${it.qty}" min="1" style="width:60px;padding:6px;border-radius:6px;border:1px solid #eee" onchange="updateQty(${idx}, this.value)">
+            <button onclick="updateQty(${idx}, ${it.qty+1})">+</button>
+            <button class="remove-btn" onclick="removeItem(${idx})">Remove</button>
+          </div>
+        </div>
+        <div style="font-weight:700">₹${it.price * it.qty}</div>
+      `;
+      itemsDiv.appendChild(row);
+      subtotal += it.price * it.qty;
+    });
+    document.getElementById('subtotal').textContent = subtotal;
+    document.getElementById('summary').style.display = 'block';
+  }
+
+  function updateQty(idx, val){
+    const cart = getCart();
+    const qty = Math.max(1, parseInt(val)||1);
+    cart[idx].qty = qty;
+    saveCart(cart);
+    renderCart();
+  }
+
+  function removeItem(idx){
+    const cart = getCart();
+    cart.splice(idx,1);
+    saveCart(cart);
+    renderCart();
+  }
+
+  document.getElementById('checkoutBtn').addEventListener('click', ()=>{
+    // For demo redirect to checkout.html or show alert
+    alert('Proceeding to checkout (demo).');
+    localStorage.removeItem('zen_cart');
+    renderCart();
+  });
+
+  renderCart();
+</script>
+</body>
+</html>

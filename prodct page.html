@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Zenvora — Product Detail</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root{
+      --brand:#ff006e;
+      --accent:#fdc830;
+      --muted:#6b7280;
+      --bg:#f8f9fa;
+      --card:#fff;
+      --radius:12px;
+      --container:1200px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Segoe UI',system-ui,Arial;background:var(--bg);color:#111;line-height:1.45}
+    a{color:inherit}
+
+    /* ---------------- Header (from your home page) ---------------- */
+    header.site-header{
+      background:#1e1f26;
+      position:sticky; top:0; z-index:1000;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 18px; flex-wrap:wrap; gap:10px;
+    }
+    .logo h1{font-size:24px;color:#fff;margin:0;font-weight:700}
+    .logo span{color:var(--accent)}
+    .hamburger{display:flex;flex-direction:column;cursor:pointer}
+    .hamburger .bar{height:3px;width:25px;background:#fff;margin:4px 0;border-radius:2px}
+    .search-box{flex:1 1 auto;display:flex;justify-content:center}
+    .search-box form{position:relative;width:100%;max-width:560px}
+    .search-box input{width:100%;padding:10px 42px 10px 14px;border-radius:25px;border:none;outline:none;font-size:14px;box-shadow:0 0 4px rgba(0,0,0,0.12)}
+    .search-box button{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:#888;font-size:18px;cursor:pointer}
+    .header-icons{display:flex;align-items:center;gap:14px}
+    .header-icons a{color:#fff;font-size:18px;position:relative;text-decoration:none}
+    .cart-badge{position:absolute;top:-6px;right:-8px;background:var(--accent);color:#000;font-size:10px;font-weight:700;border-radius:50%;padding:2px 6px}
+
+    /* container */
+    .container{max-width:var(--container);margin:22px auto;padding:0 18px}
+
+    /* product grid: left gallery + right info */
+    .product-grid{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:start}
+    @media(max-width:980px){.product-grid{grid-template-columns:1fr 360px}}
+    @media(max-width:760px){.product-grid{grid-template-columns:1fr;padding-bottom:24px}}
+
+    /* Gallery card */
+    .gallery{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.06)}
+    .main-image{overflow:hidden;border-radius:10px;background:#efefef;position:relative}
+    .main-image img{width:100%;height:auto;display:block;transition:transform .35s ease}
+    .main-image:hover img{transform:scale(1.06);cursor:zoom-in}
+
+    .thumbs{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .thumb{width:72px;height:72px;border-radius:8px;overflow:hidden;flex:0 0 72px;border:2px solid transparent;cursor:pointer}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .thumb.active{border-color:var(--brand)}
+
+    /* swatches */
+    .swatches{display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap}
+    .swatch{width:34px;height:34px;border-radius:50%;border:1px solid #ddd;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,0.08)}
+    .swatch.selected{outline:3px solid rgba(0,0,0,0.06);transform:scale(1.06)}
+
+    /* trust badges (small row) */
+    .trust-small{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+    .trust-small i{color:var(--accent)}
+
+    /* Product card (sticky) */
+    .product-card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.06);position:sticky;top:22px}
+    .product-title{font-size:22px;font-weight:700;margin-bottom:6px}
+    .rating-row{display:flex;gap:10px;align-items:center;margin-bottom:12px;color:var(--muted)}
+    .price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
+    .price-row .sale{font-size:22px;color:var(--brand);font-weight:800}
+    .price-row .old{color:var(--muted);text-decoration:line-through}
+
+    .short-desc{color:var(--muted);margin-bottom:18px}
+
+    /* selectors */
+    .selectors{display:grid;gap:12px;margin-bottom:14px}
+    .sizes{display:flex;gap:8px;flex-wrap:wrap}
+    .size-btn{padding:8px 12px;border-radius:8px;border:1px solid #eee;background:#fff;cursor:pointer;font-weight:700}
+    .size-btn.selected{background:var(--brand);color:#fff;border-color:var(--brand)}
+
+    .qty-row{display:flex;gap:8px;align-items:center}
+    .qty-controls{display:flex;gap:6px;align-items:center}
+    .qty-controls button{width:38px;height:38px;border-radius:8px;border:1px solid #eee;background:#fff;cursor:pointer;font-size:18px}
+    .qty-controls input{width:64px;text-align:center;padding:8px;border-radius:8px;border:1px solid #eee}
+
+    .cta-row{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    .btn.primary{background:var(--brand);color:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+    .btn.ghost{background:#fff;border:1px solid #eee}
+
+    .trust-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;color:var(--muted)}
+    .trust-row i{color:var(--accent)}
+
+    /* details section - tabs */
+    .details{margin-top:20px;background:var(--card);padding:16px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.04)}
+    .tabs{display:flex;gap:10px;border-bottom:1px solid #eee;padding-bottom:12px;margin-bottom:12px;overflow:auto}
+    .tab-btn{padding:8px 12px;border-radius:8px;border:none;background:transparent;cursor:pointer;font-weight:700;color:var(--muted)}
+    .tab-btn.active{color:var(--brand);border-bottom:3px solid var(--brand);padding-bottom:6px}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block;color:#444}
+
+    /* reviews */
+    .reviews-list{display:grid;gap:12px}
+    .review{display:flex;gap:12px;background:#fafafa;padding:12px;border-radius:10px}
+    .review .avatar{width:56px;height:56px;border-radius:50%;overflow:hidden}
+    .review .meta{font-size:14px}
+    .stars-small{color:#f5b301;margin-bottom:6px}
+
+    /* related */
+    .related{margin-top:18px}
+    .related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+    .related .card{background:#fff;border-radius:10px;padding:10px;box-shadow:0 8px 20px rgba(0,0,0,0.06);text-align:center}
+    .related img{width:100%;height:120px;object-fit:cover;border-radius:8px}
+    .related .title{font-weight:700;margin:8px 0;font-size:14px}
+    .related .price{color:var(--brand);font-weight:800}
+
+    footer.site-footer{margin-top:28px;background:#111;color:#ddd;padding:24px;border-radius:10px;max-width:var(--container);margin-left:auto;margin-right:auto}
+
+    /* small screens */
+    @media(max-width:760px){
+      .main {padding:18px}
+      .product-grid{grid-template-columns:1fr}
+      .product-card{position:static}
+      .thumb{width:58px;height:58px;flex:0 0 58px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar (mobile) -->
+  <div class="sidebar" id="sidebar" style="position:fixed;top:0;left:-260px;width:260px;height:100%;background:#1e1f26;padding:60px 18px;box-shadow:2px 0 8px rgba(0,0,0,.4);transition:left .25s">
+    <a href="#" style="color:#fff;display:block;margin-bottom:12px;text-decoration:none">Home</a>
+    <a href="#" style="color:#fff;display:block;margin-bottom:12px;text-decoration:none">Products</a>
+    <a href="#" style="color:#fff;display:block;margin-bottom:12px;text-decoration:none">About</a>
+    <a href="#" style="color:#fff;display:block;margin-bottom:12px;text-decoration:none">Contact</a>
+    <a href="cart.html" style="color:#fff;display:block;margin-bottom:12px;text-decoration:none">Cart</a>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="hamburger" onclick="document.getElementById('sidebar').style.left = (document.getElementById('sidebar').style.left === '0px' ? '-260px' : '0px')">
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+
+    <div class="logo" style="display:flex;align-items:center;gap:8px">
+      <h1 style="margin:0">ZENV<span>ORA</span></h1>
+    </div>
+
+    <div class="search-box" role="search" aria-label="Site search">
+      <form onsubmit="event.preventDefault(); alert('Search demo: '+this.q.value);">
+        <input name="q" type="text" placeholder="Search products..." aria-label="Search products">
+        <button type="submit" aria-label="Search"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+
+    <div class="header-icons" aria-hidden="false">
+      <a href="#" title="Account"><i class="fa fa-user"></i></a>
+      <a href="#" title="Register"><i class="fa fa-user-plus"></i></a>
+      <a href="cart.html" title="Cart"><i class="fa fa-shopping-cart"></i><span class="cart-badge" id="cartBadge">0</span></a>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- product grid -->
+    <div class="product-grid" role="main">
+
+      <!-- LEFT: gallery -->
+      <section class="gallery" aria-label="Product gallery">
+
+        <div class="main-image" id="mainImageWrap" style="height:auto">
+          <img id="mainImage" src="" alt="Product main image">
+        </div>
+
+        <div class="thumbs" id="thumbs" aria-label="Product thumbnails"></div>
+
+        <div style="margin-top:14px;font-weight:700">Available Colors</div>
+        <div class="swatches" id="swatches" aria-label="Color choices"></div>
+
+        <div class="trust-small" aria-hidden="true">
+          <div><i class="fa-solid fa-truck-fast"></i> Free Shipping</div>
+          <div><i class="fa-solid fa-shield-halved"></i> Secure Payment</div>
+          <div><i class="fa-solid fa-rotate-left"></i> Easy Returns</div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT: product info -->
+      <aside class="product-card" aria-label="Product information">
+
+        <div class="product-title" id="productTitle">Product Title</div>
+
+        <div class="rating-row" aria-hidden="true">
+          <div class="rating" id="avgRating">★★★★★</div>
+          <div style="color:var(--muted);font-size:14px" id="ratingCount">(0)</div>
+        </div>
+
+        <div class="price-row">
+          <div class="sale" id="price">₹0</div>
+          <div class="old" id="oldPrice">₹0</div>
+        </div>
+
+        <div class="short-desc" id="shortDesc">Short product description goes here.</div>
+
+        <div class="selectors" role="group" aria-label="Product options">
+
+          <div>
+            <div style="font-weight:700;margin-bottom:8px">Size</div>
+            <div class="sizes" id="sizes"></div>
+          </div>
+
+          <div>
+            <div style="font-weight:700;margin:'10px 0 8px'">Quantity</div>
+            <div class="qty-row">
+              <div class="qty-controls" role="group" aria-label="Quantity controls">
+                <button id="qtyDown" aria-label="Decrease quantity">−</button>
+                <input id="qtyInput" type="number" value="1" min="1" aria-label="Quantity">
+                <button id="qtyUp" aria-label="Increase quantity">+</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="cta-row">
+          <button class="btn primary" id="addToCartBtn"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+          <button class="btn ghost" id="buyNowBtn"><i class="fa-solid fa-bolt"></i> Buy Now</button>
+        </div>
+
+        <div class="trust-row" aria-hidden="true">
+          <div class="trust"><i class="fa-solid fa-truck-fast"></i> Free Shipping</div>
+          <div class="trust"><i class="fa-solid fa-shield-halved"></i> Secure Payment</div>
+          <div class="trust"><i class="fa-solid fa-rotate-left"></i> Easy Returns</div>
+        </div>
+
+      </aside>
+
+      <!-- DETAILS (full width) -->
+      <section class="details" style="grid-column:1/-1">
+
+        <div class="tabs" role="tablist" aria-label="Product tabs">
+          <button class="tab-btn active" data-tab="description" role="tab" aria-selected="true">Description</button>
+          <button class="tab-btn" data-tab="specs" role="tab">Specifications</button>
+          <button class="tab-btn" data-tab="shipping" role="tab">Shipping & Returns</button>
+          <button class="tab-btn" data-tab="reviews" role="tab">Reviews</button>
+        </div>
+
+        <div class="tab-panel active" id="description" role="tabpanel">
+          <h3>Product Description</h3>
+          <p id="longDescription">Long product description - features, fabric, care instructions.</p>
+        </div>
+
+        <div class="tab-panel" id="specs" role="tabpanel" aria-hidden="true">
+          <h3>Specifications</h3>
+          <table style="width:100%;border-collapse:collapse">
+            <tr><td style="padding:8px;border-bottom:1px solid #eee">Fabric</td><td style="padding:8px;border-bottom:1px solid #eee" id="specFabric">Cotton 200 GSM</td></tr>
+            <tr><td style="padding:8px;border-bottom:1px solid #eee">Print</td><td style="padding:8px;border-bottom:1px solid #eee" id="specPrint">DTG</td></tr>
+            <tr><td style="padding:8px">Origin</td><td style="padding:8px" id="specOrigin">Made in India</td></tr>
+          </table>
+        </div>
+
+        <div class="tab-panel" id="shipping" role="tabpanel" aria-hidden="true">
+          <h3>Shipping & Returns</h3>
+          <p>Free shipping above ₹499. Delivery: 3–7 business days. Easy returns within 7 days (conditions apply).</p>
+        </div>
+
+        <div class="tab-panel" id="reviews" role="tabpanel" aria-hidden="true">
+          <h3>Customer Reviews</h3>
+          <div class="reviews-list" id="reviewsList"></div>
+        </div>
+
+        <!-- Related products -->
+        <h3 style="margin-top:18px">Related Products</h3>
+        <div class="related">
+          <div class="related-grid" id="relatedGrid"></div>
+        </div>
+
+      </section>
+
+    </div> <!-- /product-grid -->
+
+    <footer class="site-footer" role="contentinfo">
+      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+        <div>
+          <strong style="color:#fff;font-size:18px">Zenvora</strong>
+          <div style="color:var(--muted);margin-top:6px">Custom prints — shirts, mugs & more</div>
+        </div>
+        <div style="color:var(--muted)">© <span id="yr"></span> Zenvora. All rights reserved.</div>
+      </div>
+    </footer>
+
+  </div><!-- /container -->
+
+  <script>
+  // ========================= SAMPLE DATA =========================
+  const product = {
+    id: 'tz-001',
+    title: 'Custom Printed T-Shirt',
+    shortDesc: 'Premium cotton tee with vibrant & durable prints. Comfortable fit for everyday wear.',
+    longDesc: 'This premium cotton tee is printed using high-quality pigment inks for vibrant, durable colours. 180–200 GSM fabric, soft touch, double-stitched hems. Machine-wash cold, inside-out to preserve print.',
+    basePrice: 599,
+    oldPrice: 1199,
+    colors: [
+      { key:'black', label:'Black', hex:'#111111', images:[
+        'https://images.unsplash.com/photo-1520976004094-0cf3b8d80b3a?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1602810315599-7f450d5a3f6b?q=80&w=1200&auto=format&fit=crop'
+      ]},
+      { key:'white', label:'White', hex:'#f5f5f5', images:[
+        'https://images.unsplash.com/photo-1520976271121-5f6b0f3c6f9c?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1520974004239-7b6d2a3d5f1b?q=80&w=1200&auto=format&fit=crop'
+      ]},
+      { key:'red', label:'Red', hex:'#e23a3a', images:[
+        'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop'
+      ]}
+    ],
+    sizes: ['S','M','L','XL']
+  };
+
+  const reviews = [
+    { name:'Priya Sharma', avatar:'https://randomuser.me/api/portraits/women/44.jpg', rating:5, text:'Print quality was superb — exactly like the preview. Delivery fast too!'},
+    { name:'Rohit Verma', avatar:'https://randomuser.me/api/portraits/men/46.jpg', rating:4, text:'Nice fabric and good print. Packaging could be better.'},
+    { name:'Ananya Gupta', avatar:'https://randomuser.me/api/portraits/women/50.jpg', rating:5, text:'Perfect fit and the colors lasted after washes. Highly recommended!'}
+  ];
+
+  const related = [
+    { id:'p2', title:'Personalized Coffee Mug', price:299, img:'https://source.unsplash.com/random/400x300?mug' },
+    { id:'p3', title:'Photo Frame Gift', price:799, img:'https://source.unsplash.com/random/400x300?frame' },
+    { id:'p4', title:'Custom Wall Poster', price:399, img:'https://source.unsplash.com/random/400x300?poster' },
+    { id:'p5', title:'Custom Phone Cover', price:499, img:'https://source.unsplash.com/random/400x300?phone' }
+  ];
+
+  // ========================= INIT UI =========================
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  const mainImage = document.getElementById('mainImage');
+  const thumbsWrap = document.getElementById('thumbs');
+  const swatchesWrap = document.getElementById('swatches');
+  const sizesWrap = document.getElementById('sizes');
+  const reviewsList = document.getElementById('reviewsList');
+  const relatedGrid = document.getElementById('relatedGrid');
+
+  // set product texts
+  document.getElementById('productTitle').textContent = product.title;
+  document.getElementById('shortDesc').textContent = product.shortDesc;
+  document.getElementById('longDescription').textContent = product.longDesc;
+  document.getElementById('price').textContent = '₹' + product.basePrice;
+  document.getElementById('oldPrice').textContent = '₹' + product.oldPrice;
+  document.getElementById('ratingCount').textContent = `(${reviews.length})`;
+
+  // compute average rating
+  const avg = Math.round(reviews.reduce((s,r)=>s+r.rating,0)/reviews.length);
+  const stars = '★'.repeat(avg) + '☆'.repeat(5-avg);
+  document.getElementById('avgRating').textContent = stars;
+
+  // selected state
+  let selectedColorKey = product.colors[0].key;
+  let selectedSize = product.sizes[1] || product.sizes[0];
+
+  // render thumbnails for given color
+  function renderThumbnails(colorKey){
+    thumbsWrap.innerHTML = '';
+    const color = product.colors.find(c=>c.key===colorKey) || product.colors[0];
+    (color.images || []).forEach((src, idx)=>{
+      const btn = document.createElement('button');
+      btn.className = 'thumb';
+      btn.type = 'button';
+      btn.title = 'View image ' + (idx+1);
+      btn.innerHTML = `<img src="${src}" alt="${product.title} thumbnail ${idx+1}">`;
+      if(idx===0) btn.classList.add('active');
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('.thumb').forEach(t=>t.classList.remove('active'));
+        btn.classList.add('active');
+        mainImage.src = src;
+      });
+      thumbsWrap.appendChild(btn);
+    });
+    // set main image
+    if(color.images && color.images.length) mainImage.src = color.images[0];
+  }
+
+  // render swatches
+  function renderSwatches(){
+    swatchesWrap.innerHTML = '';
+    product.colors.forEach(c=>{
+      const el = document.createElement('button');
+      el.className = 'swatch';
+      el.title = c.label;
+      el.style.background = c.hex;
+      el.setAttribute('data-key', c.key);
+      if(c.key === selectedColorKey) el.classList.add('selected');
+      el.addEventListener('click', ()=>{
+        selectedColorKey = c.key;
+        renderSwatches();
+        renderThumbnails(selectedColorKey);
+      });
+      swatchesWrap.appendChild(el);
+    });
+  }
+
+  // render sizes
+  function renderSizes(){
+    sizesWrap.innerHTML = '';
+    product.sizes.forEach(s=>{
+      const b = document.createElement('button');
+      b.className = 'size-btn';
+      b.type = 'button';
+      b.textContent = s;
+      b.dataset.size = s;
+      if(s === selectedSize) b.classList.add('selected');
+      b.addEventListener('click', ()=>{
+        selectedSize = s;
+        renderSizes();
+      });
+      sizesWrap.appendChild(b);
+    });
+  }
+
+  // render reviews
+  function renderReviews(){
+    reviewsList.innerHTML = '';
+    reviews.forEach(r=>{
+      const div = document.createElement('div');
+      div.className = 'review';
+      div.innerHTML = `
+        <div class="avatar"><img src="${r.avatar}" alt="${r.name}" style="width:56px;height:56px;border-radius:50%;object-fit:cover;"></div>
+        <div class="meta">
+          <div style="display:flex;align-items:center;gap:10px"><strong>${r.name}</strong><div class="stars-small">${'★'.repeat(r.rating)+'☆'.repeat(5-r.rating)}</div></div>
+          <div style="color:var(--muted);margin-top:6px">${r.text}</div>
+        </div>
+      `;
+      reviewsList.appendChild(div);
+    });
+  }
+
+  // render related
+  function renderRelated(){
+    relatedGrid.innerHTML = '';
+    related.forEach(p=>{
+      const c = document.createElement('div');
+      c.className = 'card';
+      c.innerHTML = `
+        <img src="${p.img}" alt="${p.title}">
+        <div class="title">${p.title}</div>
+        <div class="price">₹${p.price}</div>
+        <div style="margin-top:8px"><button class="btn ghost" style="padding:8px 10px" data-id="${p.id}"><i class="fa-solid fa-cart-plus"></i> Add</button></div>
+      `;
+      relatedGrid.appendChild(c);
+      c.querySelector('button').addEventListener('click', ()=>{
+        addToCart({ id:p.id, title:p.title, price:p.price, img:p.img, size:null, color:null, qty:1 });
+        alert(`${p.title} added to cart`);
+        updateCartBadge();
+      });
+      c.addEventListener('click', (e)=>{
+        if(e.target.tagName !== 'BUTTON') {
+          // simulate open product detail for related (for demo just scroll to top)
+          window.scrollTo({top:0,behavior:'smooth'});
+        }
+      });
+    });
+  }
+
+  // initial renders
+  renderThumbnails(selectedColorKey);
+  renderSwatches();
+  renderSizes();
+  renderReviews();
+  renderRelated();
+
+  // qty controls
+  const qtyInput = document.getElementById('qtyInput');
+  document.getElementById('qtyUp').addEventListener('click', ()=> qtyInput.value = Math.max(1, parseInt(qtyInput.value||1)+1));
+  document.getElementById('qtyDown').addEventListener('click', ()=> qtyInput.value = Math.max(1, parseInt(qtyInput.value||1)-1));
+
+  // tabs logic
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // open image in new tab on click (simple zoom)
+  document.getElementById('mainImageWrap').addEventListener('click', ()=>{
+    const src = mainImage.src;
+    window.open(src,'_blank');
+  });
+
+  // ========== CART (localStorage) ==========
+  function getCart(){ return JSON.parse(localStorage.getItem('zen_cart')||'[]'); }
+  function saveCart(cart){ localStorage.setItem('zen_cart',JSON.stringify(cart)); }
+  function updateCartBadge(){
+    const c = getCart().reduce((s,i)=>s + (i.qty||0),0);
+    document.getElementById('cartBadge').textContent = c;
+  }
+
+  function addToCart(item){
+    const cart = getCart();
+    // merge if same id+size+color
+    const found = cart.find(ci => ci.id === item.id && ci.size === item.size && ci.color === item.color);
+    if(found){ found.qty = (found.qty||0) + item.qty; }
+    else{ cart.push(item); }
+    saveCart(cart);
+    updateCartBadge();
+  }
+
+  // Add to Cart button
+  document.getElementById('addToCartBtn').addEventListener('click', ()=>{
+    const qty = Math.max(1, parseInt(qtyInput.value||1));
+    const colorObj = product.colors.find(c=>c.key===selectedColorKey);
+    const item = {
+      id: product.id,
+      title: product.title,
+      price: product.basePrice,
+      img: mainImage.src,
+      size: selectedSize,
+      color: colorObj ? colorObj.key : null,
+      colorLabel: colorObj ? colorObj.label : null,
+      qty: qty
+    };
+    addToCart(item);
+    // feedback
+    const b = document.getElementById('addToCartBtn');
+    b.innerHTML = '<i class="fa-solid fa-check"></i> Added';
+    setTimeout(()=> b.innerHTML = '<i class="fa-solid fa-cart-plus"></i> Add to Cart', 1100);
+  });
+
+  // Buy Now
+  document.getElementById('buyNowBtn').addEventListener('click', ()=>{
+    const qty = Math.max(1, parseInt(qtyInput.value||1));
+    const colorObj = product.colors.find(c=>c.key===selectedColorKey);
+    const item = {
+      id: product.id,
+      title: product.title,
+      price: product.basePrice,
+      img: mainImage.src,
+      size: selectedSize,
+      color: colorObj ? colorObj.key : null,
+      colorLabel: colorObj ? colorObj.label : null,
+      qty: qty
+    };
+    addToCart(item);
+    // redirect to cart page
+    window.location.href = 'cart.html';
+  });
+
+  // update badge initial
+  updateCartBadge();
+
+  </script>
+</body>
+</html>

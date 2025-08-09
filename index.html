@@ -235,77 +235,7 @@
         display: none;
       }
     }
-  </style>
-</head>
-<body>
-  <!-- Sidebar only for mobile -->
-  <div class="sidebar" id="sidebar">
-    <a href="#">Home</a>
-    <a href="#">Products</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-    <a href="login.html">Login</a>
-    <a href="#">Cart</a>
-  </div>
 
-  <!-- Header -->
-  <header>
-    <div class="hamburger" onclick="toggleSidebar()">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-    </div>
-    <div class="logo">
-      <h1>ZENV<span>ORA</span></h1>
-    </div>
-    <div class="search-box">
-      <form>
-        <input type="text" placeholder="Search for products or services...">
-        <button type="submit"><i class="fas fa-search"></i></button>
-      </form>
-    </div>
-    <div class="header-icons">
-      <a href="login.html"><i class="fas fa-user"></i></a>
-      <a href="login emple.html"><i class="fas fa-user-plus"></i></a>
-      <a href="#"><i class="fas fa-shopping-cart"></i><span class="cart-badge">2</span></a>
-    </div>
-  </header>
-
-  <!-- Scrollable menu -->
-  <div class="scroll-menu-wrapper">
-    <div class="scroll-menu">
-      <a href="#">T-Shirts</a>
-      <a href="#">Mugs</a>
-      <a href="#">Mobile Covers</a>
-      <a href="#">Photo Frames</a>
-      <a href="#">Chains</a>
-      <a href="#">New Arrivals</a>
-      <a href="#">Gift Ideas</a>
-    </div>
-  </div>
-
-  <!-- Hero section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Create. Print. Inspire.</h1>
-      <p>Discover unique personalized products like T-shirts, mugs, and more with Zenvora – your custom print brand.</p>
-    </div>
-    <div class="hero-image">
-      <img src="benr.jpg" alt="Banner" />
-    </div>
-  </section>
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zenvora Store</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background: #fcefdc;
-    }
     .container {
         max-width: 1200px;
         margin: auto;
@@ -810,9 +740,172 @@
 .add-to-cart:hover {
   background: #d6005e;
 }
+
+.zenvora-footer {
+  background: #111;
+  color: #ddd;
+  font-family: 'Segoe UI', sans-serif;
+  padding-top: 50px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  padding: 0 20px;
+}
+
+.footer-col h3 {
+  color: #fff;
+  margin-bottom: 15px;
+  font-size: 18px;
+  border-left: 3px solid #ff006e;
+  padding-left: 10px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin: 8px 0;
+}
+
+.footer-col ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-col ul li a:hover {
+  color: #ff006e;
+}
+
+.brand h2 {
+  font-size: 24px;
+  color: #ff006e;
+}
+
+.brand p {
+  font-size: 14px;
+  color: #bbb;
+  margin-top: 10px;
+}
+
+.newsletter-form {
+  display: flex;
+  margin-top: 10px;
+}
+
+.newsletter-form input {
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 4px 0 0 4px;
+  flex: 1;
+}
+
+.newsletter-form button {
+  padding: 10px 15px;
+  background: #ff006e;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.newsletter-form button:hover {
+  background: #d6005e;
+}
+
+.social-icons {
+  margin-top: 15px;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin-right: 10px;
+  color: #ccc;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #ff006e;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 15px 0;
+  border-top: 1px solid #222;
+  font-size: 14px;
+  color: #777;
+  margin-top: 40px;
+}
 </style>
 </head>
 <body>
+  <!-- Sidebar only for mobile -->
+  <div class="sidebar" id="sidebar">
+    <a href="#">Home</a>
+    <a href="#">Products</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a href="login.html">Login</a>
+    <a href="#">Cart</a>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="hamburger" onclick="toggleSidebar()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <div class="logo">
+      <h1>ZENV<span>ORA</span></h1>
+    </div>
+    <div class="search-box">
+      <form>
+        <input type="text" placeholder="Search for products or services...">
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </form>
+    </div>
+    <div class="header-icons">
+      <a href="login.html"><i class="fas fa-user"></i></a>
+      <a href="login emple.html"><i class="fas fa-user-plus"></i></a>
+      <a href="#"><i class="fas fa-shopping-cart"></i><span class="cart-badge">2</span></a>
+    </div>
+  </header>
+
+  <!-- Scrollable menu -->
+  <div class="scroll-menu-wrapper">
+    <div class="scroll-menu">
+      <a href="coding ts.html">T-Shirts</a>
+      <a href="#">Mugs</a>
+      <a href="#">Mobile Covers</a>
+      <a href="#">Photo Frames</a>
+      <a href="#">Chains</a>
+      <a href="#">New Arrivals</a>
+      <a href="#">Gift Ideas</a>
+    </div>
+  </div>
+
+  <!-- Hero section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Create. Print. Inspire.</h1>
+      <p>Discover unique personalized products like T-shirts, mugs, and more with Zenvora – your custom print brand.</p>
+    </div>
+    <div class="hero-image">
+      <img src="benr.jpg" alt="Banner" />
+    </div>
+  </section>
+  
+
 
 <!-- Overlay -->
 <div class="overlay" id="overlay" onclick="closeCart()"></div>
@@ -857,86 +950,7 @@
     </div>
 </div>
 
-<script>
-    const cartSidebar = document.getElementById('cartSidebar');
-    const overlay = document.getElementById('overlay');
-    const cartItems = document.getElementById('cartItems');
-    const subtotal = document.getElementById('subtotal');
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    document.querySelectorAll('.add-cart').forEach((btn) => {
-        btn.addEventListener('click', () => {
-            const product = btn.parentElement;
-            const title = product.querySelector('.title').innerText;
-            const price = parseInt(product.querySelector('.sale-price').innerText.replace('₹','').replace('.00',''));
-            const img = product.querySelector('img').src;
-
-            const existing = cart.find(item => item.title === title);
-            if (existing) {
-                existing.qty++;
-            } else {
-                cart.push({ title, price, img, qty: 1 });
-            }
-            saveCart();
-            updateCart();
-            openCart();
-        });
-    });
-
-    function updateCart() {
-        cartItems.innerHTML = '';
-        let total = 0;
-        cart.forEach((item, index) => {
-            total += item.price * item.qty;
-            cartItems.innerHTML += `
-                <div class="cart-item">
-                    <img src="${item.img}">
-                    <div class="cart-item-details">
-                        <div>${item.title}</div>
-                        <div>₹${item.price * item.qty}</div>
-                        <div class="quantity-controls">
-                            <button onclick="changeQty(${index}, -1)">-</button>
-                            <span>${item.qty}</span>
-                            <button onclick="changeQty(${index}, 1)">+</button>
-                        </div>
-                    </div>
-                    <button class="remove-btn" onclick="removeItem(${index})">×</button>
-                </div>
-            `;
-        });
-        subtotal.innerText = total;
-    }
-
-    function changeQty(index, delta) {
-        cart[index].qty += delta;
-        if (cart[index].qty <= 0) {
-            cart.splice(index, 1);
-        }
-        saveCart();
-        updateCart();
-    }
-
-    function removeItem(index) {
-        cart.splice(index, 1);
-        saveCart();
-        updateCart();
-    }
-
-    function saveCart() {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-    function openCart() {
-        cartSidebar.classList.add('active');
-        overlay.classList.add('active');
-    }
-    function closeCart() {
-        cartSidebar.classList.remove('active');
-        overlay.classList.remove('active');
-    }
-
-    updateCart();
-</script>
 
 <!-- Limited Time Offer Banner -->
 <div class="offer-banner">
@@ -1186,112 +1200,6 @@
 <!-- Font Awesome for icons -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-<style>
-.zenvora-footer {
-  background: #111;
-  color: #ddd;
-  font-family: 'Segoe UI', sans-serif;
-  padding-top: 50px;
-}
-
-.footer-container {
-  max-width: 1200px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 40px;
-  padding: 0 20px;
-}
-
-.footer-col h3 {
-  color: #fff;
-  margin-bottom: 15px;
-  font-size: 18px;
-  border-left: 3px solid #ff006e;
-  padding-left: 10px;
-}
-
-.footer-col ul {
-  list-style: none;
-}
-
-.footer-col ul li {
-  margin: 8px 0;
-}
-
-.footer-col ul li a {
-  color: #ccc;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.footer-col ul li a:hover {
-  color: #ff006e;
-}
-
-.brand h2 {
-  font-size: 24px;
-  color: #ff006e;
-}
-
-.brand p {
-  font-size: 14px;
-  color: #bbb;
-  margin-top: 10px;
-}
-
-.newsletter-form {
-  display: flex;
-  margin-top: 10px;
-}
-
-.newsletter-form input {
-  padding: 10px;
-  border: none;
-  outline: none;
-  border-radius: 4px 0 0 4px;
-  flex: 1;
-}
-
-.newsletter-form button {
-  padding: 10px 15px;
-  background: #ff006e;
-  color: white;
-  border: none;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.newsletter-form button:hover {
-  background: #d6005e;
-}
-
-.social-icons {
-  margin-top: 15px;
-}
-
-.social-icons a {
-  display: inline-block;
-  margin-right: 10px;
-  color: #ccc;
-  font-size: 16px;
-  transition: color 0.3s;
-}
-
-.social-icons a:hover {
-  color: #ff006e;
-}
-
-.footer-bottom {
-  text-align: center;
-  padding: 15px 0;
-  border-top: 1px solid #222;
-  font-size: 14px;
-  color: #777;
-  margin-top: 40px;
-}
-</style>
 
 
 <script>
@@ -1321,6 +1229,85 @@ let countdownInterval = setInterval(function () {
     function toggleSidebar() {
       document.getElementById("sidebar").classList.toggle("show");
     }
-  </script>
+ 
+    const cartSidebar = document.getElementById('cartSidebar');
+    const overlay = document.getElementById('overlay');
+    const cartItems = document.getElementById('cartItems');
+    const subtotal = document.getElementById('subtotal');
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    document.querySelectorAll('.add-cart').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const product = btn.parentElement;
+            const title = product.querySelector('.title').innerText;
+            const price = parseInt(product.querySelector('.sale-price').innerText.replace('₹','').replace('.00',''));
+            const img = product.querySelector('img').src;
+
+            const existing = cart.find(item => item.title === title);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ title, price, img, qty: 1 });
+            }
+            saveCart();
+            updateCart();
+            openCart();
+        });
+    });
+
+    function updateCart() {
+        cartItems.innerHTML = '';
+        let total = 0;
+        cart.forEach((item, index) => {
+            total += item.price * item.qty;
+            cartItems.innerHTML += `
+                <div class="cart-item">
+                    <img src="${item.img}">
+                    <div class="cart-item-details">
+                        <div>${item.title}</div>
+                        <div>₹${item.price * item.qty}</div>
+                        <div class="quantity-controls">
+                            <button onclick="changeQty(${index}, -1)">-</button>
+                            <span>${item.qty}</span>
+                            <button onclick="changeQty(${index}, 1)">+</button>
+                        </div>
+                    </div>
+                    <button class="remove-btn" onclick="removeItem(${index})">×</button>
+                </div>
+            `;
+        });
+        subtotal.innerText = total;
+    }
+
+    function changeQty(index, delta) {
+        cart[index].qty += delta;
+        if (cart[index].qty <= 0) {
+            cart.splice(index, 1);
+        }
+        saveCart();
+        updateCart();
+    }
+
+    function removeItem(index) {
+        cart.splice(index, 1);
+        saveCart();
+        updateCart();
+    }
+
+    function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function openCart() {
+        cartSidebar.classList.add('active');
+        overlay.classList.add('active');
+    }
+    function closeCart() {
+        cartSidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    }
+
+    updateCart();
+</script>
 </body>
 </html>
