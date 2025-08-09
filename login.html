@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zenvora | Login Options</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: #fff;
+      color: #333;
+    }
+
+    /* Top Info Bar */
+    .top-bar {
+      background: #f9f9f9;
+      padding: 8px 20px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .top-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .top-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .top-bar a {
+      text-decoration: none;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: 0.3s;
+    }
+
+    .top-bar a:hover {
+      color: #fdc830;
+    }
+
+    /* Logo Section */
+    .logo {
+      text-align: center;
+      padding: 25px 0;
+    }
+
+    .logo h1 {
+      font-size: 42px;
+      font-weight: bold;
+      color: #1e1f26;
+    }
+
+    .logo span {
+      color: #fdc830;
+    }
+
+    /* Navigation Menu */
+    nav {
+      background: #fff;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav li {
+      border-left: 1px solid #ddd;
+    }
+
+    nav li:first-child {
+      border-left: none;
+    }
+
+    nav a {
+      display: block;
+      padding: 14px 22px;
+      text-decoration: none;
+      color: #333;
+      letter-spacing: 1px;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background: #fdc830;
+      color: #000;
+    }
+
+    /* Mobile Menu */
+    .menu-toggle {
+      display: none;
+      font-size: 26px;
+      cursor: pointer;
+      padding: 14px;
+      background: #fff;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        display: none;
+        border-top: 1px solid #ddd;
+      }
+      nav ul.active {
+        display: flex;
+      }
+      nav li {
+        border-left: none;
+        border-bottom: 1px solid #ddd;
+      }
+      .menu-toggle {
+        display: block;
+        text-align: left;
+        width: 100%;
+        border-bottom: 1px solid #ddd;
+      }
+    }
+
+    /* Section Title */
+    .section-title {
+      text-align: center;
+      font-size: 26px;
+      letter-spacing: 2px;
+      margin: 40px 0 30px;
+    }
+
+    .divider {
+      height: 1px;
+      background: #ddd;
+      margin: 20px auto;
+      width: 80%;
+    }
+
+    /* Login Buttons */
+    .login-options {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 0 20px 60px;
+    }
+
+    .login-btn {
+      background: #1e1f26;
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      font-size: 16px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+      text-decoration: none;
+      min-width: 260px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background: #fdc830;
+      color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    @media (max-width: 500px) {
+      .login-btn {
+        min-width: 100%;
+      }
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      document.querySelector('nav ul').classList.toggle('active');
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-left">
+      <i class="fas fa-phone-alt"></i> <span>1-800-ZENVORA</span>
+    </div>
+    <div class="top-right">
+      <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+      <a href="#"><i class="fas fa-shopping-cart"></i> Cart (0)</a>
+      <a href="#"><i class="fas fa-credit-card"></i> Checkout</a>
+    </div>
+  </div>
+
+  <!-- Logo -->
+  <div class="logo">
+    <h1>ZENV<span>ORA</span></h1>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i> Menu</button>
+    <ul>
+      <li><a href="#">Products</a></li>
+      <li><a href="#">Custom Prints</a></li>
+      <li><a href="#">How It Works</a></li>
+      <li><a href="#">Bulk Orders</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Design Ideas</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- Title -->
+  <div class="divider"></div>
+  <div class="section-title">SELECT LOGIN OPTIONS</div>
+  <div class="divider"></div>
+
+  <!-- Login Buttons -->
+  <div class="login-options">
+    <a href="man login.html" class="login-btn">INDIVIDUAL PURCHASES LOGIN</a>
+    <a href="#" class="login-btn">GROUP STORE DASHBOARD LOGIN</a>
+  </div>
+
+</body>
+</html>
