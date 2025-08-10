@@ -481,6 +481,259 @@
         font-weight: bold;
         margin-top: 10px;
     }
+
+  .mug-product-desc { 
+    max-width: 1100px; margin: 28px auto; padding: 22px; 
+    background: linear-gradient(180deg,#fffaf6,#fff6ee);
+    border-radius: 12px; box-shadow: 0 8px 28px rgba(19,24,32,0.06);
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  }
+
+  .mug-desc-inner { display: flex; gap: 20px; align-items: flex-start; }
+  .mug-media { flex: 0 0 220px; display:flex; align-items:center; justify-content:center; }
+  .mug-media img { width: 220px; height:220px; object-fit:cover; border-radius:10px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+
+  .mug-content { flex: 1; }
+  .mug-content h2 { font-size: 1.6rem; margin: 0 0 8px; color: #1f2937; }
+  .lead { color:#444; line-height:1.6; margin-bottom: 12px; font-size:15px; }
+
+  .mug-features { list-style: none; padding:0; margin: 12px 0 16px; display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px 18px; }
+  .mug-features li { display:flex; gap:10px; align-items:flex-start; color:#333; font-size:14px; }
+  .mug-features i { color:#ff7a18; font-size:18px; margin-top:2px; }
+
+  .mug-meta { display:flex; gap:18px; flex-wrap:wrap; color:#555; font-size:13.5px; margin-bottom:16px; }
+  .mug-meta > div { background: #fff; padding:8px 12px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.03); }
+
+  .mug-ctas { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  .btn { text-decoration:none; display:inline-block; padding:10px 16px; border-radius:8px; font-weight:600; font-size:14px; }
+  .btn.primary { background:#ff7a18; color:#fff; box-shadow: 0 6px 16px rgba(255,122,24,0.16); }
+  .btn.primary:hover { background:#e76b10; }
+  .btn.outline { border:1px solid #ff7a18; color:#ff7a18; background:transparent; }
+  .btn.outline:hover { background: rgba(255,122,24,0.06); }
+
+  /* Responsive */
+  @media (max-width:900px) {
+    .mug-desc-inner { flex-direction: column; align-items:center; text-align:center; }
+    .mug-media { flex:0 0 auto; }
+    .mug-features { grid-template-columns: repeat(1, minmax(0,1fr)); }
+    .mug-meta { justify-content:center; }
+    .mug-content h2 { font-size:1.4rem; }
+  }
+
+.reviews-section {
+  max-width: 900px;
+  margin: 50px auto;
+  text-align: center;
+  padding: 20px;
+}
+.reviews-section h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+.average-rating {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #f39c12;
+}
+.stars {
+  color: #f39c12;
+  font-size: 18px;
+}
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.review-card {
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+.review-card:hover {
+  transform: translateY(-3px);
+}
+.review-card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover;
+}
+.read-more-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #f39c12;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.read-more-btn:hover {
+  background: #d9860c;
+}
+
+.faq-section {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 10px;
+}
+.faq-section h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+.faq-item {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.faq-question {
+  width: 100%;
+  background: #f7f7f7;
+  border: none;
+  padding: 15px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+}
+.faq-answer {
+  display: none;
+  padding: 15px;
+  background: white;
+  color: #555;
+  font-size: 14px;
+}
+.faq-item.active .faq-answer {
+  display: block;
+}
+.faq-item.active .faq-question {
+  background: #ffefdb;
+}
+
+    
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 40px;
+        background: #fff;
+        max-width: 1100px;
+        margin: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    /* Left - Image Carousel */
+    .product-images {
+        flex: 1;
+        min-width: 320px;
+        position: relative;
+    }
+    .product-images img {
+        width: 100%;
+        border-radius: 8px;
+    }
+    .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255,255,255,0.9);
+        border: none;
+        font-size: 20px;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 50%;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .arrow:hover {
+        background: #ff3b3b;
+        color: #fff;
+    }
+    .arrow.left { left: 10px; }
+    .arrow.right { right: 10px; }
+
+    /* Right - Details */
+    .product-details {
+        flex: 1;
+        min-width: 320px;
+    }
+    .product-details h1 {
+        font-size: 28px;
+        margin-bottom: 12px;
+        color: #222;
+    }
+    .product-details p {
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    .options {
+        margin-bottom: 20px;
+    }
+    .options label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 6px;
+    }
+    select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        outline: none;
+        transition: border 0.2s;
+    }
+    select:focus {
+        border: 1px solid #ff3b3b;
+    }
+    .price {
+        font-size: 20px;
+        margin: 15px 0;
+    }
+    .old-price {
+        text-decoration: line-through;
+        color: #777;
+        margin-right: 10px;
+    }
+    .discount {
+        color: #28a745;
+        font-weight: bold;
+    }
+    .cta-btn {
+        display: inline-block;
+        background: #ff3b3b;
+        color: #fff;
+        padding: 14px 25px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .cta-btn:hover {
+        background: #d62828;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .product-container {
+            padding: 20px;
+        }
+        .product-details h1 {
+            font-size: 22px;
+        }
+    }
 </style>
 </head>
 <body>
@@ -534,7 +787,7 @@
 
 <div class="slider">
     <div class="slides">
-        <img src="https://www.dudeme.in/cdn/shop/files/Hoodies_-_WEB_31e0a18b-e9bb-48a7-ba5e-abde0632a8f8.png?v=1712124692" alt="Slide 1">
+        <img src="https://cdn.canvaschamp.in/static/images/landingpage/photomugs/photo_mug_main_banner-new.jpg" alt="Slide 1">
         <img src="https://www.dudeme.in/cdn/shop/files/Anime_-_WEB_1.png?v=1712385934" alt="Slide 2">
         <img src="https://www.dudeme.in/cdn/shop/files/Buy_any_2_15off_web.jpg?v=1740137418" alt="Slide 3">
     </div>
@@ -554,15 +807,16 @@
 
 <div class="container">
     <div class="product">
-        <img src="https://www.dudeme.in/cdn/shop/products/Declare-variables-MELANGE.jpg?v=1661775148&width=600" alt="Product 1">
-        <div class="title">Declare Variables Not War</div>
+        <img src="https://www.yourprint.in/new-admin-ajax.php?action=resize_outer_image&cfcache=all&url=https%3A%2F%2Fwww.yourprint.in%2Fwp-content%2Fuploads%2F2017%2F05%2Fwhite_mug.png&resizeTo=450&format=webp" alt="Product 1">
+        <div class="title">Customized Photo Printed Coffee Mug Cup</div>
         <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
         <button class="add-cart">Add to Cart</button>
     </div>
     <div class="product">
-        <img src="https://www.dudeme.in/cdn/shop/products/1st-Rule-BLACK.jpg?v=1661942569&width=600" alt="Product 2">
-        <div class="title">If It Works Don't Touch</div>
-        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <img src="https://www.yourprint.in/new-admin-ajax.php?action=resize_outer_image&cfcache=all&url=https%3A%2F%2Fyp-media.s3.ap-south-1.amazonaws.com%2FDesigns_Inners_and_Outers%2FMugs%2Fmug_full_print_pat_d7_o.jpg&resizeTo=450&format=webp" alt="Product 2">
+        <div class="title">Aqua Green Marble Customized Photo Printed Coffee Mug
+</div>
+        <div><span class="price"> ₹599.00</span> <span class="sale-price">₹320.00</span></div>
         <button class="add-cart">Add to Cart</button>
     </div>
     <div class="product">
@@ -674,6 +928,88 @@
 
 
 
+
+
+
+<!-- Mug Product Description (copy-paste into your page) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<section class="mug-product-desc" aria-labelledby="mug-title">
+  <div class="mug-desc-inner">
+    <div class="mug-media" aria-hidden="true">
+      <img src="https://cdn.canvaschamp.in/static/images/landingpage/photomugs/photo_mug_large2.jpg" alt="Custom printed mug example">
+    </div>
+
+    <div class="mug-content">
+      <h2 id="mug-title">Custom Mugs — Make Every Sip Special</h2>
+      <p class="lead">
+        Create memorable moments with our <strong>custom mugs</strong>. Print photos, quotes or logos on premium ceramic mugs designed to last — vibrant, fade‑resistant prints that stay beautiful wash after wash.
+      </p>
+
+      <ul class="mug-features" aria-hidden="false">
+        <li><i class="fa-solid fa-check-circle"></i> <strong>High‑Quality Printing</strong> — crisp, vibrant & fade resistant</li>
+        <li><i class="fa-solid fa-certificate"></i> <strong>Premium Ceramic</strong> — microwave & dishwasher safe</li>
+        <li><i class="fa-solid fa-gift"></i> <strong>Perfect for Gifting</strong> — birthdays, corporate gifts, anniversaries</li>
+        <li><i class="fa-solid fa-paint-roller"></i> <strong>Fully Customizable</strong> — single side, double side or wrap prints</li>
+      </ul>
+
+      <div class="mug-meta">
+        <div><strong>Sizes:</strong> 325ml • 450ml</div>
+        <div><strong>Prints:</strong> Single side • Double side • Wrap</div>
+        <div><strong>Shipping:</strong> Fast production & express shipping available</div>
+      </div>
+
+      <div class="mug-ctas">
+        <a class="btn primary" href="/collection/mugs">View Mugs Collection</a>
+        <a class="btn outline" href="/customize">Customize Your Mug</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="reviews-section">
+  <h2>What Our Customers Say</h2>
+  <div class="average-rating">
+    <span class="stars">★★★★★</span>
+    <span>4.8/5 (256 reviews)</span>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer">
+      <div>
+        <h4>Ravi Sharma</h4>
+        <p class="stars">★★★★★</p>
+        <p>"The custom mug quality is excellent. Colors are vibrant and print is durable!"</p>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Customer">
+      <div>
+        <h4>Anjali Verma</h4>
+        <p class="stars">★★★★★</p>
+        <p>"Absolutely loved the design and fast delivery. Will order more gifts soon."</p>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Customer">
+      <div>
+        <h4>Amit Kumar</h4>
+        <p class="stars">★★★★☆</p>
+        <p>"Great product! The customization was exactly as I wanted."</p>
+      </div>
+    </div>
+  </div>
+
+  <a href="#" class="read-more-btn">Read All Reviews</a>
+</section>
+
+
+
+
 <div class="choose-us-section">
     <h2>WHY CHOOSE US</h2>
     <div class="divider"></div>
@@ -698,9 +1034,214 @@
     </div>
 </div>
 
+<div class="container">
+    <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/Declare-variables-MELANGE.jpg?v=1661775148&width=600" alt="Product 1">
+        <div class="title">Declare Variables Not War</div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/1st-Rule-BLACK.jpg?v=1661942569&width=600" alt="Product 2">
+        <div class="title">If It Works Don't Touch</div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/Programmer-life-BLACK.jpg?v=1661840058&width=600" alt="Product 3">
+        <div class="title">No Hugs Only Bugs</div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/While-Alive-eat-sleep-BLACK.jpg?v=1661945011&width=600" alt="Product 4">
+        <div class="title">Eat Sleep Code</div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/Black_507de0ce-db7b-4cc7-9d79-c2bf25334951.jpg?v=1648016159&width=600" alt="Product 3">
+        <div class="title">I Need a HUGe Amount Of Money Unisex Half Sleeve T-Shirt</div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/Eat-Sleep-code-repeat-NAVY.jpg?v=1661924952&width=600" alt="Product 4">
+        <div class="title">Eat Sleep Code Repeat Half Sleeve Unisex T-Shirt</div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/It_s-not-a-bug-BLACK.jpg?v=1661944696&width=400" alt="Product 3">
+        <div class="title">It's Not A Bug Half Sleeve Unisex T-Shirt</div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/I-am-Offline-BLACK.jpg?v=1661939137&width=400" alt="Product 4">
+        <div class="title">I Am Offline Half Sleeve Unisex T-Shirt</div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+
+
+    <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/There_s-no-place-like-NAVY.jpg?v=1661944509&width=600" alt="Product 3">
+        <div class="title">There Is No Place Like 127.0.0.1 Half Sleeve Unisex T-Shirt</div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/Things-i-hate-NAVY.jpg?v=1661945588&width=600" alt="Product 4">
+        <div class="title">Things I Hate Half Sleeve Unisex T-Shirt</div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/Automate-_-chill-BLACK.jpg?v=1661752068&width=400" alt="Product 3">
+        <div class="title">Automate & Chill Half Sleeve Unisex T-Shirt</div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/If-you-don_t-understand-recursion-BLACK.jpg?v=1661944285&width=600" alt="Product 4">
+        <div class="title">If You Don't Understand Recursion Half Sleeve Unisex T-Shirt
+ </div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+
+
+      <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/Git-Hub-the-place-where-NAVY.jpg?v=1661932089&width=400" alt="Product 3">
+        <div class="title">GitHub The Place Where i Fork Half Sleeve Unisex T-Shirt</div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/I-fixed-it-NAVY.jpg?v=1661939858&width=400" alt="Product 4">
+        <div class="title">I Fixed It Half Sleeve Unisex T-Shirt</div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/Get-me-some-api-NAVY.jpg?v=1661930899&width=400" alt="Product 3">
+        <div class="title">Get Me Some API Now Half Sleeve Unisex T-Shirt</div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+    <div class="product">
+        <img src="https://www.dudeme.in/cdn/shop/products/Css-to-my-html-MAROON.jpg?v=1661947204&width=600" alt="Product 4">
+        <div class="title">You Are The Css To My Html Half Sleeve Unisex T-Shirt</div>
+        <div><span class="price">₹1,199.00</span> <span class="sale-price">₹599.00</span></div>
+        <button class="add-cart">Add to Cart</button>
+    </div>
+
+</div>
+<!-- FAQ Section -->
+<section class="faq-section">
+  <h2>❓ Frequently Asked Questions</h2>
+  
+  <div class="faq-item">
+    <button class="faq-question">
+      🖨 Printing Quality & Durability
+    </button>
+    <div class="faq-answer">
+      <p>We use premium-grade ceramic mugs with high-resolution printing. Designs are fade-resistant and dishwasher safe, ensuring long-lasting colors and durability.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      🚚 Shipping & Delivery Time
+    </button>
+    <div class="faq-answer">
+      <p>Orders are processed within 1–2 business days and shipped via trusted courier partners. Delivery usually takes 3–5 days depending on your location.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-question">
+      🎨 Customization Guidelines
+    </button>
+    <div class="faq-answer">
+      <p>Please upload high-resolution images (at least 300 DPI) for best results. Avoid neon colors as they may not print accurately on ceramic surfaces.</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<div class="product-container">
+    <!-- Left: Product Images -->
+    <div class="product-images">
+        <img id="main-img" src="https://cdn.canvaschamp.in/static/images/landingpage/photomugs/photo_mug_large4.jpg" alt="Custom Photo Mug">
+        <button class="arrow left" onclick="changeImage(-1)">&#8249;</button>
+        <button class="arrow right" onclick="changeImage(1)">&#8250;</button>
+    </div>
+
+    <!-- Right: Product Details -->
+    <div class="product-details">
+        <h1>Personalized Photo Mugs</h1>
+        <p>Start your day with a smile! Our <strong>custom photo mugs</strong> are perfect for gifting or enjoying your coffee in style. Printed with high-quality, fade-resistant ink on durable ceramic, these mugs are dishwasher & microwave safe.</p>
+        
+        <div class="options">
+            <label>Mug Type:</label>
+            <select>
+                <option>Tea Mug</option>
+                <option>Coffee Mug</option>
+                <option>Magic Mug</option>
+            </select>
+        </div>
+
+        <div class="options">
+            <label>Capacity:</label>
+            <select>
+                <option>11oz</option>
+                <option>15oz</option>
+                <option>20oz</option>
+            </select>
+        </div>
+
+        <div class="options">
+            <label>Select Color:</label>
+            <select>
+                <option>White</option>
+                <option>Black</option>
+                <option>Red</option>
+            </select>
+        </div>
+
+        <div class="price">
+            <span class="old-price">₹298.00</span>
+            <span>₹149.00</span> <span class="discount">50% OFF</span>
+        </div>
+
+        <button class="cta-btn">CREATE A CUSTOM PHOTO MUG</button>
+    </div>
+</div>
+
+
+
 
 
 <script>
+    const images = [
+        "https://cdn.canvaschamp.in/static/images/landingpage/photomugs/photo_mug_large.jpg",
+        "https://cdn.canvaschamp.in/static/images/landingpage/photomugs/photo_mug_large2.jpg",
+        "https://cdn.canvaschamp.in/static/images/landingpage/photomugs/photo_mug_large4.jpg"
+    ];
+    let index = 0;
+    function changeImage(direction) {
+        index = (index + direction + images.length) % images.length;
+        document.getElementById("main-img").src = images[index];
+    }
+
     const cartSidebar = document.getElementById('cartSidebar');
     const overlay = document.getElementById('overlay');
     const cartItems = document.getElementById('cartItems');
@@ -822,6 +1363,14 @@ updateDots();
     function toggleSidebar() {
       document.getElementById("sidebar").classList.toggle("show");
     }
-  </script>
+
+// FAQ Toggle
+document.querySelectorAll(".faq-question").forEach(button => {
+  button.addEventListener("click", () => {
+    const faqItem = button.parentElement;
+    faqItem.classList.toggle("active");
+  });
+});
+</script>
 </body>
 </html>

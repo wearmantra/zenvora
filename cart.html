@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Full Cart - Zenvora</title>
+<title>Zenvora - Checkout</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -11,16 +11,17 @@
         margin: 0;
         padding: 20px;
     }
-    h1 {
+    h1, h2 {
         text-align: center;
     }
-    .cart-page {
+    .cart-page, .checkout-form {
         max-width: 800px;
         margin: auto;
         background: white;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
     }
     .cart-item {
         display: flex;
@@ -43,6 +44,34 @@
         text-align: right;
         margin-top: 10px;
     }
+    button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        background: #ff6f00;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #e65c00;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    input, textarea {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
 </style>
 </head>
 <body>
@@ -51,6 +80,42 @@
 <div class="cart-page" id="cartPage">
     <div id="cartList"></div>
     <div class="total">Total: ₹<span id="totalPrice">0</span></div>
+    <button id="checkoutBtn">Proceed to Checkout</button>
+</div>
+
+<div class="checkout-form" id="checkoutForm" style="display:none;">
+    <h2>Customer Details</h2>
+    <form id="customerForm">
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="fullname" required>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="tel" name="mobile" pattern="[0-9]{10}" required>
+        </div>
+        <div class="form-group">
+            <label>Address</label>
+            <textarea name="address" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>City</label>
+            <input type="text" name="city" required>
+        </div>
+        <div class="form-group">
+            <label>State</label>
+            <input type="text" name="state" required>
+        </div>
+        <div class="form-group">
+            <label>Pincode</label>
+            <input type="text" name="pincode" pattern="[0-9]{6}" required>
+        </div>
+        <button type="submit">Proceed to Payment</button>
+    </form>
 </div>
 
 <script>
@@ -71,8 +136,24 @@
             </div>
         `;
     });
-
     totalPrice.innerText = total;
+
+    document.getElementById('checkoutBtn').addEventListener('click', () => {
+        document.getElementById('cartPage').style.display = 'none';
+        document.getElementById('checkoutForm').style.display = 'block';
+    });
+
+    document.getElementById('customerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const customerData = {};
+        formData.forEach((value, key) => {
+            customerData[key] = value;
+        });
+        localStorage.setItem('customerData', JSON.stringify(customerData));
+        alert('Proceeding to Payment...');
+        window.location.href = "payment.html"; // Dummy payment page
+    });
 </script>
 
 </body>
