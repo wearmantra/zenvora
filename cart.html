@@ -11,9 +11,7 @@
         margin: 0;
         padding: 20px;
     }
-    h1, h2 {
-        text-align: center;
-    }
+    h1, h2 { text-align: center; }
     .cart-page, .checkout-form {
         max-width: 800px;
         margin: auto;
@@ -31,71 +29,39 @@
         border-bottom: 1px solid #ddd;
         padding-bottom: 10px;
     }
-    .cart-item img {
-        width: 80px;
-        border-radius: 5px;
-        margin-right: 10px;
-    }
-    .cart-item-details {
-        flex: 1;
-        margin-left: 10px;
-    }
+    .cart-item img { width: 80px; border-radius: 5px; margin-right: 10px; }
+    .cart-item-details { flex: 1; margin-left: 10px; }
     .quantity-controls {
-        display: flex;
-        align-items: center;
-        gap: 5px;
+        display: flex; align-items: center; gap: 5px;
     }
     .quantity-controls button {
-        padding: 4px 10px;
-        font-size: 16px;
-        cursor: pointer;
+        padding: 4px 10px; font-size: 16px; cursor: pointer;
     }
     .total {
-        font-size: 18px;
-        font-weight: bold;
-        text-align: right;
-        margin-top: 10px;
+        font-size: 18px; font-weight: bold;
+        text-align: right; margin-top: 10px;
     }
     button {
-        display: block;
-        margin: 20px auto;
-        padding: 10px 20px;
-        font-size: 16px;
-        background: #ff6f00;
-        color: white;
-        border: none;
-        border-radius: 5px;
+        display: block; margin: 20px auto;
+        padding: 10px 20px; font-size: 16px;
+        background: #ff6f00; color: white;
+        border: none; border-radius: 5px;
         cursor: pointer;
     }
-    button:hover {
-        background: #e65c00;
-    }
-    .form-group {
-        margin-bottom: 15px;
-    }
-    label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-    }
+    button:hover { background: #e65c00; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; font-weight: bold; }
     input, textarea {
-        width: 100%;
-        padding: 8px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
+        width: 100%; padding: 8px;
+        border-radius: 5px; border: 1px solid #ccc;
     }
     .checkout-products {
-        margin-bottom: 20px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 10px;
-        background: #fff9f2;
+        margin-bottom: 20px; border: 1px solid #ddd;
+        border-radius: 8px; padding: 10px; background: #fff9f2;
     }
     .checkout-products h3 {
-        margin-bottom: 10px;
-        font-size: 1.1rem;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 5px;
+        margin-bottom: 10px; font-size: 1.1rem;
+        border-bottom: 1px solid #ddd; padding-bottom: 5px;
     }
 </style>
 </head>
@@ -144,7 +110,7 @@
             <label>Pincode</label>
             <input type="text" name="pincode" pattern="[0-9]{6}" required>
         </div>
-        <button type="submit">Proceed to Payment</button>
+        <button type="submit">Place Order</button>
     </form>
 </div>
 
@@ -214,15 +180,24 @@
         formData.forEach((value, key) => {
             customerData[key] = value;
         });
-        localStorage.setItem('customerData', JSON.stringify(customerData));
-        alert('Proceeding to Payment...');
+
+        const total = parseInt(checkoutTotalPrice.innerText);
+        let orders = JSON.parse(localStorage.getItem('orders')) || [];
+        orders.push({
+            customer: customerData,
+            cart: cart,
+            total: total,
+            date: new Date().toLocaleString()
+        });
+        localStorage.setItem('orders', JSON.stringify(orders));
+
+        localStorage.removeItem('cart');
+        alert('Order placed successfully!');
         window.location.href = "payment.html";
     });
 
     if (cart.length > 0) {
-        cart.forEach(item => {
-            if (!item.qty) item.qty = 1;
-        });
+        cart.forEach(item => { if (!item.qty) item.qty = 1; });
     }
     updateCartDisplay();
 </script>
