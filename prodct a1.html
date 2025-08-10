@@ -118,6 +118,75 @@
   @media (max-width:480px){
     .cart-sidebar{width:100%}
   }
+  /* Existing CSS above remains same */
+
+/* ----------- Mobile responsive styles ----------- */
+@media (max-width:768px){
+  .page-wrap{
+    flex-direction:column;
+    gap:18px;
+  }
+  .left, .right{
+    max-width:100%;
+  }
+  .main-image{
+    padding:12px;
+  }
+  .thumbnails{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    gap:8px;
+  }
+  .thumbnails img{
+    flex-shrink:0;
+  }
+  h1{
+    font-size:18px;
+  }
+  .sale-price{
+    font-size:18px;
+  }
+  .purchase-row{
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .add-cart-btn{
+    width:100%;
+  }
+}
+
+/* Even smaller screens (phones) */
+@media (max-width:480px){
+  .topbar{
+    padding:10px 14px;
+  }
+  .brand{
+    font-size:18px;
+  }
+  .view-cart-tab{
+    font-size:14px;
+    padding:6px 10px;
+  }
+  .qty button{
+    padding:6px 10px;
+  }
+  .qty .val{
+    min-width:30px;
+  }
+  /* Cart full width */
+  .cart-sidebar{
+    width:100%;
+    right:-100%;
+  }
+  .cart-sidebar.open{
+    right:0;
+  }
+  .cart-item .thumb{
+    width:72px;
+    height:72px;
+  }
+}
+
 </style>
 </head>
 <body>
