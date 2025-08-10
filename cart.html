@@ -26,6 +26,7 @@
     .cart-item {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         margin-bottom: 15px;
         border-bottom: 1px solid #ddd;
         padding-bottom: 10px;
@@ -37,6 +38,17 @@
     }
     .cart-item-details {
         flex: 1;
+        margin-left: 10px;
+    }
+    .quantity-controls {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .quantity-controls button {
+        padding: 4px 10px;
+        font-size: 16px;
+        cursor: pointer;
     }
     .total {
         font-size: 18px;
@@ -72,7 +84,6 @@
         border-radius: 5px;
         border: 1px solid #ccc;
     }
-    /* Product review box in checkout */
     .checkout-products {
         margin-bottom: 20px;
         border: 1px solid #ddd;
@@ -99,14 +110,11 @@
 
 <div class="checkout-form" id="checkoutForm" style="display:none;">
     <h2>Customer Details</h2>
-
-    <!-- Product summary in checkout -->
     <div class="checkout-products" id="checkoutProducts">
         <h3>Your Order</h3>
         <div id="checkoutProductList"></div>
         <div class="total">Total: ₹<span id="checkoutTotalPrice">0</span></div>
     </div>
-
     <form id="customerForm">
         <div class="form-group">
             <label>Full Name</label>
@@ -141,38 +149,58 @@
 </div>
 
 <script>
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartList = document.getElementById('cartList');
     const totalPrice = document.getElementById('totalPrice');
     const checkoutProductList = document.getElementById('checkoutProductList');
     const checkoutTotalPrice = document.getElementById('checkoutTotalPrice');
-    let total = 0;
 
-    cart.forEach(item => {
-        total += item.price;
-        // Cart page list
-        cartList.innerHTML += `
-            <div class="cart-item">
-                <img src="${item.img}">
-                <div class="cart-item-details">
-                    <div>${item.title}</div>
-                    <div>₹${item.price}</div>
+    function updateCartDisplay() {
+        cartList.innerHTML = '';
+        checkoutProductList.innerHTML = '';
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            total += item.price * item.qty;
+
+            cartList.innerHTML += `
+                <div class="cart-item">
+                    <img src="${item.img}">
+                    <div class="cart-item-details">
+                        <div>${item.title}</div>
+                        <div>₹${item.price}</div>
+                    </div>
+                    <div class="quantity-controls">
+                        <button onclick="changeQty(${index}, -1)">-</button>
+                        <span>${item.qty}</span>
+                        <button onclick="changeQty(${index}, 1)">+</button>
+                    </div>
                 </div>
-            </div>
-        `;
-        // Checkout summary list
-        checkoutProductList.innerHTML += `
-            <div class="cart-item">
-                <img src="${item.img}">
-                <div class="cart-item-details">
-                    <div>${item.title}</div>
-                    <div>₹${item.price}</div>
+            `;
+
+            checkoutProductList.innerHTML += `
+                <div class="cart-item">
+                    <img src="${item.img}">
+                    <div class="cart-item-details">
+                        <div>${item.title}</div>
+                        <div>₹${item.price} x ${item.qty}</div>
+                    </div>
                 </div>
-            </div>
-        `;
-    });
-    totalPrice.innerText = total;
-    checkoutTotalPrice.innerText = total;
+            `;
+        });
+
+        totalPrice.innerText = total;
+        checkoutTotalPrice.innerText = total;
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function changeQty(index, change) {
+        cart[index].qty += change;
+        if (cart[index].qty <= 0) {
+            cart.splice(index, 1);
+        }
+        updateCartDisplay();
+    }
 
     document.getElementById('checkoutBtn').addEventListener('click', () => {
         document.getElementById('cartPage').style.display = 'none';
@@ -188,8 +216,15 @@
         });
         localStorage.setItem('customerData', JSON.stringify(customerData));
         alert('Proceeding to Payment...');
-        window.location.href = "payment.html"; // Dummy payment page
+        window.location.href = "payment.html";
     });
+
+    if (cart.length > 0) {
+        cart.forEach(item => {
+            if (!item.qty) item.qty = 1;
+        });
+    }
+    updateCartDisplay();
 </script>
 
 </body>
