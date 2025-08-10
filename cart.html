@@ -72,6 +72,20 @@
         border-radius: 5px;
         border: 1px solid #ccc;
     }
+    /* Product review box in checkout */
+    .checkout-products {
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        background: #fff9f2;
+    }
+    .checkout-products h3 {
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 5px;
+    }
 </style>
 </head>
 <body>
@@ -85,6 +99,14 @@
 
 <div class="checkout-form" id="checkoutForm" style="display:none;">
     <h2>Customer Details</h2>
+
+    <!-- Product summary in checkout -->
+    <div class="checkout-products" id="checkoutProducts">
+        <h3>Your Order</h3>
+        <div id="checkoutProductList"></div>
+        <div class="total">Total: ₹<span id="checkoutTotalPrice">0</span></div>
+    </div>
+
     <form id="customerForm">
         <div class="form-group">
             <label>Full Name</label>
@@ -122,11 +144,24 @@
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartList = document.getElementById('cartList');
     const totalPrice = document.getElementById('totalPrice');
+    const checkoutProductList = document.getElementById('checkoutProductList');
+    const checkoutTotalPrice = document.getElementById('checkoutTotalPrice');
     let total = 0;
 
     cart.forEach(item => {
         total += item.price;
+        // Cart page list
         cartList.innerHTML += `
+            <div class="cart-item">
+                <img src="${item.img}">
+                <div class="cart-item-details">
+                    <div>${item.title}</div>
+                    <div>₹${item.price}</div>
+                </div>
+            </div>
+        `;
+        // Checkout summary list
+        checkoutProductList.innerHTML += `
             <div class="cart-item">
                 <img src="${item.img}">
                 <div class="cart-item-details">
@@ -137,6 +172,7 @@
         `;
     });
     totalPrice.innerText = total;
+    checkoutTotalPrice.innerText = total;
 
     document.getElementById('checkoutBtn').addEventListener('click', () => {
         document.getElementById('cartPage').style.display = 'none';
