@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Orders & Customers</title>
+  <style>
+    body { font-family: "Segoe UI", sans-serif; margin:0; padding:0; background:#f9f9f9; }
+    header { background:#111; color:#fff; padding:20px; text-align:center; }
+    header h1 { margin:0; color:#ff4444; }
+    .container { max-width:1200px; margin:30px auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+    table { width:100%; border-collapse: collapse; margin-top:20px; font-size:14px; }
+    th, td { border:1px solid #ddd; padding:8px; text-align:center; vertical-align: top; }
+    th { background:#ff4444; color:#fff; }
+    input, select, textarea { padding:6px; border-radius:6px; border:1px solid #ccc; width:100%; }
+    button { background:#ff4444; color:#fff; padding:6px 12px; border:none; border-radius:6px; cursor:pointer; font-size:13px; }
+    button:hover { background:#cc0000; }
+    .form-section { margin-top:30px; padding:20px; background:#f1f1f1; border-radius:10px; }
+    .form-section h2 { color:#ff4444; margin-bottom:15px; }
+    .form-group { margin-bottom:10px; }
+    .form-inline { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+    .product-list { margin-top:10px; }
+    .product-item { background:#eee; padding:5px 8px; border-radius:6px; margin-bottom:5px; font-size:13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Admin - Manage Orders & Customers</h1>
+  </header>
+
+  <div class="container">
+    <!-- Orders Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Products</th>
+          <th>Status</th>
+          <th>Payment</th>
+          <th>Delivery Date</th>
+          <th>Customer Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Update</th>
+        </tr>
+      </thead>
+      <tbody id="orderTable"></tbody>
+    </table>
+
+    <!-- Add New Order Form -->
+    <div class="form-section">
+      <h2>Add New Order</h2>
+      <div class="form-group">
+        <label>Order ID</label>
+        <input type="text" id="newOrderId" placeholder="e.g. ORD103">
+      </div>
+
+      <!-- Products Section -->
+      <h3 style="color:#ff4444;margin-top:15px;">Products</h3>
+      <div class="form-inline">
+        <div class="form-group">
+          <label>Product Name</label>
+          <input type="text" id="newProductName" placeholder="e.g. Blue Jeans">
+        </div>
+        <div class="form-group">
+          <label>Quantity</label>
+          <input type="number" id="newProductQty" placeholder="e.g. 2">
+        </div>
+        <div class="form-group">
+          <label>Price</label>
+          <input type="number" id="newProductPrice" placeholder="e.g. 1200">
+        </div>
+      </div>
+      <button onclick="addProduct()">+ Add Product</button>
+
+      <div id="productPreview" class="product-list"></div>
+
+      <div class="form-inline">
+        <div class="form-group">
+          <label>Status</label>
+          <select id="newStatus">
+            <option>Pending</option>
+            <option>Shipped</option>
+            <option>Delivered</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Payment</label>
+          <select id="newPayment">
+            <option>Unpaid</option>
+            <option>Paid</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Delivery Date</label>
+        <input type="text" id="newDelivery" placeholder="e.g. 30 Aug 2025">
+      </div>
+
+      <h3 style="color:#ff4444;margin-top:20px;">Customer Details</h3>
+      <div class="form-group">
+        <label>Customer Name</label>
+        <input type="text" id="newCustomerName" placeholder="e.g. Rahul Sharma">
+      </div>
+      <div class="form-inline">
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="text" id="newCustomerPhone" placeholder="e.g. +91 9876543210">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="newCustomerEmail" placeholder="e.g. rahul@example.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Address</label>
+        <textarea id="newCustomerAddress" rows="2" placeholder="e.g. 123, MG Road, Indore"></textarea>
+      </div>
+
+      <button onclick="addOrder()">Add Order</button>
+    </div>
+  </div>
+
+  <script>
+    // Existing orders
+    let orders = {
+      "ORD101": { 
+        products:[{name:"Black T-shirt", qty:1, price:500}, {name:"Blue Jeans", qty:2, price:1200}],
+        status:"Shipped", payment:"Paid", delivery:"25 Aug 2025",
+        customerName:"Amit Verma", phone:"+91 9998887777", email:"amit@example.com", address:"45, Park Street, Delhi"
+      },
+      "ORD102": { 
+        products:[{name:"Red Hoodie", qty:1, price:900}],
+        status:"Pending", payment:"Unpaid", delivery:"—",
+        customerName:"Neha Gupta", phone:"+91 8887776666", email:"neha@example.com", address:"12, Ring Road, Indore"
+      }
+    };
+
+    let newProducts = [];
+
+    // Render Orders Table
+    function renderTable(){
+      let tbody = document.getElementById("orderTable");
+      tbody.innerHTML = "";
+      for(let id in orders){
+        let o = orders[id];
+        let productHTML = o.products.map(p=>`${p.name} (x${p.qty}) - ₹${p.price}`).join("<br>");
+        tbody.innerHTML += `
+          <tr>
+            <td>${id}</td>
+            <td>${productHTML}</td>
+            <td>
+              <select onchange="updateOrder('${id}','status',this.value)">
+                <option ${o.status=="Pending"?"selected":""}>Pending</option>
+                <option ${o.status=="Shipped"?"selected":""}>Shipped</option>
+                <option ${o.status=="Delivered"?"selected":""}>Delivered</option>
+              </select>
+            </td>
+            <td>
+              <select onchange="updateOrder('${id}','payment',this.value)">
+                <option ${o.payment=="Unpaid"?"selected":""}>Unpaid</option>
+                <option ${o.payment=="Paid"?"selected":""}>Paid</option>
+              </select>
+            </td>
+            <td><input type="text" value="${o.delivery}" onchange="updateOrder('${id}','delivery',this.value)"></td>
+            <td><input type="text" value="${o.customerName}" onchange="updateOrder('${id}','customerName',this.value)"></td>
+            <td><input type="text" value="${o.phone}" onchange="updateOrder('${id}','phone',this.value)"></td>
+            <td><input type="text" value="${o.email}" onchange="updateOrder('${id}','email',this.value)"></td>
+            <td><textarea rows="2" onchange="updateOrder('${id}','address',this.value)">${o.address}</textarea></td>
+            <td><button onclick="saveOrder('${id}')">Save</button></td>
+          </tr>
+        `;
+      }
+    }
+
+    // Update order fields
+    function updateOrder(id, field, value){
+      orders[id][field] = value;
+    }
+
+    // Save updated order
+    function saveOrder(id){
+      alert("Order "+id+" updated successfully!");
+      renderTable();
+    }
+
+    // Add product to temp list
+    function addProduct(){
+      let name = document.getElementById("newProductName").value.trim();
+      let qty = document.getElementById("newProductQty").value.trim();
+      let price = document.getElementById("newProductPrice").value.trim();
+      if(!name || !qty || !price){
+        alert("Please fill Product Name, Quantity and Price!");
+        return;
+      }
+      newProducts.push({name, qty, price});
+      document.getElementById("newProductName").value = "";
+      document.getElementById("newProductQty").value = "";
+      document.getElementById("newProductPrice").value = "";
+      renderProductPreview();
+    }
+
+    // Preview products
+    function renderProductPreview(){
+      let div = document.getElementById("productPreview");
+      div.innerHTML = "";
+      newProducts.forEach((p,i)=>{
+        div.innerHTML += `<div class="product-item">${p.name} (x${p.qty}) - ₹${p.price} <button onclick="removeProduct(${i})">X</button></div>`;
+      });
+    }
+
+    function removeProduct(index){
+      newProducts.splice(index,1);
+      renderProductPreview();
+    }
+
+    // Add new order
+    function addOrder(){
+      let id = document.getElementById("newOrderId").value.trim();
+      let status = document.getElementById("newStatus").value;
+      let payment = document.getElementById("newPayment").value;
+      let delivery = document.getElementById("newDelivery").value.trim();
+      let customerName = document.getElementById("newCustomerName").value.trim();
+      let phone = document.getElementById("newCustomerPhone").value.trim();
+      let email = document.getElementById("newCustomerEmail").value.trim();
+      let address = document.getElementById("newCustomerAddress").value.trim();
+
+      if(!id || !customerName || !phone || newProducts.length==0){
+        alert("Please enter Order ID, Customer Name, Phone & at least 1 Product!");
+        return;
+      }
+
+      if(orders[id]){
+        alert("Order ID already exists!");
+        return;
+      }
+
+      orders[id] = { products:newProducts, status, payment, delivery, customerName, phone, email, address };
+      alert("New Order "+id+" added successfully!");
+      renderTable();
+
+      // Clear form
+      document.getElementById("newOrderId").value = "";
+      document.getElementById("newDelivery").value = "";
+      document.getElementById("newStatus").value = "Pending";
+      document.getElementById("newPayment").value = "Unpaid";
+      document.getElementById("newCustomerName").value = "";
+      document.getElementById("newCustomerPhone").value = "";
+      document.getElementById("newCustomerEmail").value = "";
+      document.getElementById("newCustomerAddress").value = "";
+      newProducts = [];
+      renderProductPreview();
+    }
+
+    renderTable();
+  </script>
+</body>
+</html>

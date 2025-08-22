@@ -4,6 +4,9 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Declare Variables T-Shirt — Zenvora</title>
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+ 
 <style>
   :root{
     --accent:#e53935; /* red */
@@ -187,17 +190,406 @@
   }
 }
 
-</style>
+
+    footer {
+      background: linear-gradient(90deg, #8e3c61, #6b355c);
+      color: #fff;
+      padding: 50px 20px 20px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .footer-column h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-column ul li {
+      margin: 8px 0;
+    }
+
+    .footer-column ul li a {
+      color: #ddd;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-column ul li a:hover {
+      color: #fff;
+    }
+
+    /* Email Signup */
+    .newsletter p {
+      font-size: 14px;
+      margin-bottom: 15px;
+      color: #ddd;
+    }
+
+    .newsletter form {
+      display: flex;
+      max-width: 320px;
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .newsletter input {
+      flex: 1;
+      border: none;
+      padding: 12px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .newsletter button {
+      background: #5b224a;
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .newsletter button:hover {
+      background: #451937;
+    }
+
+    /* Bottom Bar */
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      margin-top: 30px;
+      padding-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: #ddd;
+    }
+
+    .payment-icons i {
+      font-size: 26px;
+      margin: 0 8px;
+      color: #fff;
+    }
+
+    /* Scroll to top button */
+    .scroll-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #fff;
+      color: #5b224a;
+      border-radius: 50%;
+      padding: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+
+    .scroll-top:hover {
+      background: #f4f4f4;
+    }
+
+
+    .features {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding: 40px 20px;
+      background: linear-gradient(90deg, #b24592, #f15f79);
+      color: white;
+      flex-wrap: wrap;
+      text-align: left;
+    }
+
+    .feature {
+      flex: 1 1 220px;
+      max-width: 260px;
+      margin: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .feature.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .feature i {
+      font-size: 28px;
+      min-width: 30px;
+      color: #fff;
+    }
+
+    .feature h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .feature p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.5;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .features {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .feature {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+  
+    /* Navbar */
+    nav {
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      position: fixed; 
+      top: 0; 
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .nav-top {
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center;
+      padding: 12px 40px;
+    }
+
+    /* Links */
+    .nav-links {display: flex; gap: 25px;}
+    .nav-links a {
+      text-decoration: none; color: #111; font-size: 16px; font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {color: #a44b63;}
+
+    /* Logo */
+    .logo {font-size: 22px; font-weight: 700; color: #a44b63;}
+    .logo span {color: #333; font-weight: 500;}
+
+    /* Right icons */
+    .nav-icons {display: flex; gap: 20px; align-items: center;}
+    .nav-icons i {
+      font-size: 20px; cursor: pointer; transition: transform 0.2s, color 0.3s;
+    }
+    .nav-icons i:hover {transform: scale(1.2); color: #a44b63;}
+
+    /* Cart */
+    .cart {position: relative;}
+    .cart span {
+      position: absolute; top: -8px; right: -10px;
+      background: #a44b63; color: white; font-size: 12px;
+      padding: 2px 6px; border-radius: 50%;
+    }
+
+    /* Hamburger */
+    .hamburger {display: none; font-size: 22px; cursor: pointer;}
+
+    /* Search Bar */
+    .search-bar {
+      position: fixed;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%) scaleY(0);
+      width: 90%;
+      max-width: 500px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 25px;
+      padding: 8px 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.3s ease;
+      z-index: 1200;
+    }
+    .search-bar.active {transform: translateX(-50%) scaleY(1);}
+    .search-bar input {
+      border: none; outline: none; flex: 1;
+      font-size: 14px; padding: 6px;
+    }
+    .search-bar button {
+      background: #a44b63; color: #fff; border: none;
+      padding: 6px 12px; border-radius: 20px; font-size: 14px; cursor: pointer;
+    }
+    .search-bar button:hover {background: #902d4e;}
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed; top: 0; left: -280px;
+      width: 280px; height: 100%; background: #fff;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.15);
+      padding: 70px 25px;
+      transition: left 0.4s ease;
+      z-index: 2000; overflow-y: auto;
+    }
+    .sidebar.active {left: 0;}
+    
+    .sidebar a {
+      display: block; margin: 18px 0; text-decoration: none;
+      color: #333; font-size: 18px; font-weight: 500;
+      opacity: 0; transform: translateX(-20px);
+      transition: all 0.4s ease;
+    }
+    .sidebar.active a {opacity: 1; transform: translateX(0);}
+    .sidebar a:hover {color: #a44b63;}
+
+    /* Categories Section Sidebar */
+    .categories {margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;}
+    .categories h3 {
+      font-size: 16px; color: #a44b63;
+      margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .categories a {
+      font-size: 16px; color: #444; margin: 12px 0;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .categories a i {color: #a44b63;}
+    .categories a:hover {color: #a44b63;}
+
+    /* Overlay */
+    .overlay {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5); z-index: 1500;
+    }
+    .overlay.active {display: block;}
+
+    /* Category Scroll Bar (inside navbar) */
+    .category-bar {
+      display: flex; 
+      gap: 30px; 
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 10px 20px;
+      background: #fafafa;
+      border-top: 1px solid #eee;
+      scrollbar-width: none;
+    }
+    .category-bar::-webkit-scrollbar {display: none;}
+    .category-bar a {
+      text-decoration: none; 
+      color: #444; 
+      font-size: 15px; 
+      font-weight: 500;
+      display: inline-flex; 
+      align-items: center; 
+      gap: 8px;
+      transition: color 0.3s;
+      padding: 6px 10px;
+    }
+    .category-bar a i {color: #a44b63;}
+    .category-bar a:hover {color: #a44b63;}
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {display: none;}
+      .hamburger {display: block;}
+    }
+
+    body {padding-top: 110px;} /* to push content below navbar */
+  </style>
+
 </head>
 <body>
 
-<!-- header -->
-<div class="topbar">
-  <div class="brand">Zenvora</div>
-  <!-- This is the tab the user clicks to open sidebar (no icon) -->
-  <button class="view-cart-tab" onclick="openCart()">View Cart</button>
-</div>
+<!-- Navbar -->
+<nav>
+  <!-- Top Navbar -->
+  <div class="nav-top">
+    <div class="hamburger"><i class="fas fa-bars"></i></div>
+    <div class="nav-links">
+      <a href="#">Women</a>
+      <a href="#">Men</a>
+      <a href="#">Contact Us</a>
+    </div>
+    <div class="logo">Zen<span>vora</span></div>
+    <div class="nav-icons">
+      <i class="fas fa-search" id="searchIcon"></i>
+      <i class="fas fa-user"></i>
 
+      <!-- Cart Icon -->
+      <div class="cart" onclick="openCart()">
+        <i class="fas fa-shopping-bag"></i>
+        <span>0</span>
+      </div>
+    </div>
+  </div>
+
+  
+    </div>
+    <!-- Scroll Category Bar -->
+    <div class="category-bar">
+      <a href="#"><i class="fas fa-tshirt"></i> T-Shirts</a>
+      <a href="#"><i class="fas fa-mug-hot"></i> Mugs</a>
+      <a href="#"><i class="fas fa-mobile-alt"></i> Mobile Covers</a>
+      <a href="#"><i class="fas fa-image"></i> Photo Frames</a>
+      <a href="#"><i class="fas fa-link"></i> Chains</a>
+      <a href="#"><i class="fas fa-star"></i> New Arrivals</a>
+      <a href="#"><i class="fas fa-gift"></i> Gift Ideas</a>
+    </div>
+  </nav>
+
+  <!-- Search Bar -->
+  <div class="search-bar" id="searchBar">
+    <input type="text" placeholder="Search products...">
+    <button><i class="fas fa-search"></i></button>
+  </div>
+
+  <!-- Sidebar (Mobile) -->
+  <div class="sidebar" id="sidebar">
+    <a href="#">Women</a>
+    <a href="#">Men</a>
+    <a href="#">Contact Us</a>
+    <a href="#">Login</a>
+    <a href="#">Cart</a>
+
+    <div class="categories">
+      <h3>Shop by Category</h3>
+      <a href="#"><i class="fas fa-tshirt"></i> T-Shirts</a>
+      <a href="#"><i class="fas fa-mug-hot"></i> Mugs</a>
+      <a href="#"><i class="fas fa-mobile-alt"></i> Mobile Covers</a>
+      <a href="#"><i class="fas fa-image"></i> Photo Frames</a>
+      <a href="#"><i class="fas fa-link"></i> Chains</a>
+      <a href="#"><i class="fas fa-star"></i> New Arrivals</a>
+      <a href="#"><i class="fas fa-gift"></i> Gift Ideas</a>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
 <!-- main content: product simplified (so add to cart works) -->
 <div class="page-wrap">
   <div class="left">
@@ -271,6 +663,106 @@
     <button class="checkout-btn" onclick="checkout()">CHECK OUT</button>
   </div>
 </aside>
+
+
+
+
+
+
+
+  <section class="features">
+    <div class="feature">
+      <i class="fa-solid fa-gem"></i>
+      <div>
+        <h3>High Quality Products</h3>
+        <p>Crafted to Perfection – Unmatched Quality, Just for You!</p>
+      </div>
+    </div>
+
+    <div class="feature">
+      <i class="fa-solid fa-gift"></i>
+      <div>
+        <h3>Free Gift Box</h3>
+        <p>Enjoy free gift box. Surprise your loved ones in style!</p>
+      </div>
+    </div>
+
+    <div class="feature">
+      <i class="fa-solid fa-truck-fast"></i>
+      <div>
+        <h3>Free Shipping</h3>
+        <p>No Extra Costs – Beautiful Jewelry Delivered Free!</p>
+      </div>
+    </div>
+
+    <div class="feature">
+      <i class="fa-solid fa-wallet"></i>
+      <div>
+        <h3>Cash on Delivery</h3>
+        <p>Shop Now, Pay Later – Hassle-Free COD Experience!</p>
+      </div>
+    </div>
+  </section>
+
+ 
+
+
+  <footer>
+    <div class="footer-container">
+      <!-- Quick Links -->
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Track Your Order</a></li>
+        </ul>
+      </div>
+
+      <!-- Our Collection -->
+      <div class="footer-column">
+        <h3>Our Collection</h3>
+        <ul>
+          <li><a href="#">Customize Jewelry</a></li>
+          <li><a href="#">Engraved Jewelry</a></li>
+          <li><a href="#">Koran Jewelry</a></li>
+          <li><a href="#">Best Seller</a></li>
+          <li><a href="#">New Arrival</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="footer-column newsletter">
+        <h3>Sign Up for Email</h3>
+        <p>Sign up to get first dibs on new arrivals, sales, exclusive content, events and more!</p>
+        <form>
+          <input type="email" placeholder="Enter email address">
+          <button type="submit">Subscribe <i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="footer-bottom">
+      <p>© 2025 Zenvora. All rights reserved.</p>
+      <div class="payment-icons">
+        <i class="fa-brands fa-cc-visa"></i>
+        <i class="fa-brands fa-cc-paypal"></i>
+        <i class="fa-brands fa-cc-mastercard"></i>
+        <i class="fa-brands fa-cc-amex"></i>
+        <i class="fa-brands fa-cc-discover"></i>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <div class="scroll-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+    <i class="fa-solid fa-chevron-up"></i>
+  </div>
+
 
 <script>
   /* ---------- Utilities ---------- */
@@ -436,6 +928,40 @@
     if(e.key === CART_KEY) renderCart();
   });
 
-</script>
+
+    // Scroll animation
+    const features = document.querySelectorAll('.feature');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    features.forEach(f => observer.observe(f));
+ 
+    const hamburger = document.querySelector('.hamburger');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const searchIcon = document.getElementById('searchIcon');
+    const searchBar = document.getElementById('searchBar');
+
+    hamburger.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+    });
+
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+      searchBar.classList.remove('active');
+    });
+
+    searchIcon.addEventListener('click', () => {
+      searchBar.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>

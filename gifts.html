@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gift Ideas - Zenvora</title>
+  <style>
+    body { font-family: "Segoe UI", sans-serif; margin:0; padding:0; background:#f9f9f9; }
+    header { background:#111; color:#fff; padding:20px; text-align:center; }
+    header h1 { margin:0; color:#ff4444; }
+    .container { max-width:1200px; margin:30px auto; padding:20px; }
+    h2 { color:#ff4444; margin-bottom:10px; }
+    .filter-bar { text-align:center; margin-bottom:20px; }
+    .filter-bar button {
+      margin:5px; padding:8px 16px; border:none; border-radius:8px;
+      background:#ff4444; color:#fff; cursor:pointer; font-size:14px;
+    }
+    .filter-bar button:hover { background:#cc0000; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+    .card { background:#fff; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1); overflow:hidden; text-align:center; }
+    .card img { width:100%; height:180px; object-fit:cover; }
+    .card h3 { margin:10px 0; font-size:18px; color:#333; }
+    .card p { font-size:14px; color:#666; padding:0 10px 10px; }
+    .card button {
+      margin-bottom:15px; background:#ff4444; border:none; padding:8px 15px;
+      border-radius:8px; color:#fff; cursor:pointer; font-size:14px;
+    }
+    .card button:hover { background:#cc0000; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎁 Gift Ideas</h1>
+    <p>Find the perfect gift for your loved ones</p>
+  </header>
+
+  <div class="container">
+    <!-- Filter Buttons -->
+    <div class="filter-bar">
+      <button onclick="filterGifts('all')">All</button>
+      <button onclick="filterGifts('birthday')">Birthday</button>
+      <button onclick="filterGifts('anniversary')">Anniversary</button>
+      <button onclick="filterGifts('him')">For Him</button>
+      <button onclick="filterGifts('her')">For Her</button>
+      <button onclick="filterGifts('kids')">Kids</button>
+    </div>
+
+    <!-- Gift Grid -->
+    <div class="grid" id="giftGrid">
+      <div class="card birthday">
+        <img src="https://picsum.photos/300/200?random=1" alt="Gift">
+        <h3>Birthday Cake</h3>
+        <p>Delicious customized cake for birthdays.</p>
+        <button>View Details</button>
+      </div>
+      <div class="card anniversary">
+        <img src="https://picsum.photos/300/200?random=2" alt="Gift">
+        <h3>Couple Watch Set</h3>
+        <p>Elegant watch pair perfect for anniversaries.</p>
+        <button>View Details</button>
+      </div>
+      <div class="card him">
+        <img src="https://picsum.photos/300/200?random=3" alt="Gift">
+        <h3>Leather Wallet</h3>
+        <p>Stylish premium wallet for men.</p>
+        <button>View Details</button>
+      </div>
+      <div class="card her">
+        <img src="https://picsum.photos/300/200?random=4" alt="Gift">
+        <h3>Jewelry Set</h3>
+        <p>Beautiful necklace and earrings for her.</p>
+        <button>View Details</button>
+      </div>
+      <div class="card kids">
+        <img src="https://picsum.photos/300/200?random=5" alt="Gift">
+        <h3>Teddy Bear</h3>
+        <p>Soft and cuddly teddy for kids.</p>
+        <button>View Details</button>
+      </div>
+      <div class="card birthday her">
+        <img src="https://picsum.photos/300/200?random=6" alt="Gift">
+        <h3>Flower Bouquet</h3>
+        <p>Fresh flowers to brighten her special day.</p>
+        <button>View Details</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function filterGifts(category) {
+      let cards = document.querySelectorAll(".card");
+      cards.forEach(card => {
+        if (category === "all" || card.classList.contains(category)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>

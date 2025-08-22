@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Your Order - Zenvora</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      margin: 0; padding: 0;
+      background: #f9f9f9; color: #333;
+    }
+    header {
+      background: #111; color: #fff;
+      text-align: center; padding: 20px;
+    }
+    header h1 { color: #ff4444; margin: 0; }
+    .container {
+      max-width: 600px; margin: 30px auto;
+      background: #fff; padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    input, button {
+      width: 100%; padding: 10px;
+      margin: 10px 0; font-size: 16px;
+      border-radius: 6px; border: 1px solid #ccc;
+    }
+    button {
+      background: #ff4444; color: #fff;
+      border: none; cursor: pointer;
+    }
+    button:hover { background: #cc0000; }
+    .order-details {
+      margin-top: 20px; padding: 15px;
+      background: #f1f1f1; border-radius: 8px;
+    }
+    .order-details h3 { color: #ff4444; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Track Your Order</h1>
+    <p>Enter your Order ID below</p>
+  </header>
+
+  <div class="container">
+    <input type="text" id="orderId" placeholder="Enter Order ID">
+    <button onclick="trackOrder()">Track Order</button>
+
+    <div class="order-details" id="orderDetails" style="display:none;">
+      <h3>Order Details</h3>
+      <p><strong>Order ID:</strong> <span id="o_id"></span></p>
+      <p><strong>Product:</strong> <span id="o_product"></span></p>
+      <p><strong>Status:</strong> <span id="o_status"></span></p>
+      <p><strong>Payment:</strong> <span id="o_payment"></span></p>
+      <p><strong>Delivery Date:</strong> <span id="o_delivery"></span></p>
+    </div>
+  </div>
+
+  <script>
+    // Fake order data (Ye data admin panel se update hoga)
+    let orders = {
+      "ORD101": {
+        product: "Black T-shirt",
+        status: "Shipped",
+        payment: "Paid",
+        delivery: "25 Aug 2025"
+      },
+      "ORD102": {
+        product: "Red Hoodie",
+        status: "Pending",
+        payment: "Unpaid",
+        delivery: "—"
+      }
+    };
+
+    function trackOrder() {
+      let id = document.getElementById("orderId").value.trim();
+      let details = document.getElementById("orderDetails");
+
+      if (orders[id]) {
+        document.getElementById("o_id").innerText = id;
+        document.getElementById("o_product").innerText = orders[id].product;
+        document.getElementById("o_status").innerText = orders[id].status;
+        document.getElementById("o_payment").innerText = orders[id].payment;
+        document.getElementById("o_delivery").innerText = orders[id].delivery;
+        details.style.display = "block";
+      } else {
+        details.style.display = "block";
+        document.getElementById("o_id").innerText = "Not Found";
+        document.getElementById("o_product").innerText = "—";
+        document.getElementById("o_status").innerText = "—";
+        document.getElementById("o_payment").innerText = "—";
+        document.getElementById("o_delivery").innerText = "—";
+      }
+    }
+  </script>
+</body>
+</html>
