@@ -1025,235 +1025,55 @@
     .scroll-top:hover {
       background: #f4f4f4;
     }
-  
-   
-    /* Navbar */
-    nav {
-      background: #fff;
-      border-bottom: 1px solid #eee;
-      position: fixed; 
-      top: 0; 
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-    }
-
-    .nav-top {
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center;
-      padding: 12px 40px;
-    }
-
-    /* Links */
-    .nav-links {display: flex; gap: 25px;}
-    .nav-links a {
-      text-decoration: none; color: #111; font-size: 16px; font-weight: 500;
-      transition: color 0.3s;
-    }
-    .nav-links a:hover {color: #a44b63;}
-
-    /* Logo */
-    .logo {font-size: 22px; font-weight: 700; color: #a44b63;}
-    .logo span {color: #333; font-weight: 500;}
-
-    /* Right icons */
-    .nav-icons {display: flex; gap: 20px; align-items: center;}
-    .nav-icons i {
-      font-size: 20px; cursor: pointer; transition: transform 0.2s, color 0.3s;
-    }
-    .nav-icons i:hover {transform: scale(1.2); color: #a44b63;}
-
-    /* Cart */
-    .cart {position: relative;}
-    .cart span {
-      position: absolute; top: -8px; right: -10px;
-      background: #a44b63; color: white; font-size: 12px;
-      padding: 2px 6px; border-radius: 50%;
-    }
-
-    /* Hamburger */
-    .hamburger {display: none; font-size: 24px; cursor: pointer; color: #333;}
-
-    /* Search Bar */
-    .search-bar {
-      position: fixed;
-      top: 60px;
-      left: 50%;
-      transform: translateX(-50%) scaleY(0);
-      width: 90%;
-      max-width: 500px;
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 25px;
-      padding: 8px 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: transform 0.3s ease;
-      z-index: 1200;
-    }
-    .search-bar.active {transform: translateX(-50%) scaleY(1);}
-    .search-bar input {
-      border: none; outline: none; flex: 1;
-      font-size: 14px; padding: 6px;
-    }
-    .search-bar button {
-      background: #a44b63; color: #fff; border: none;
-      padding: 6px 12px; border-radius: 20px; font-size: 14px; cursor: pointer;
-    }
-    .search-bar button:hover {background: #902d4e;}
-
-    /* Sidebar */
-    .sidebar {
-      position: fixed; top: 0; left: -280px;
-      width: 280px; height: 100%; background: #fff;
-      box-shadow: 2px 0 10px rgba(0,0,0,0.15);
-      padding: 70px 25px;
-      transition: left 0.4s ease;
-      z-index: 2000; overflow-y: auto;
-    }
-    .sidebar.active {left: 0;}
-    
-    .sidebar a {
-      display: block; margin: 18px 0; text-decoration: none;
-      color: #333; font-size: 18px; font-weight: 500;
-      opacity: 0; transform: translateX(-20px);
-      transition: all 0.4s ease;
-    }
-    .sidebar.active a {opacity: 1; transform: translateX(0);}
-    .sidebar a:hover {color: #a44b63;}
-
-    /* Categories Section Sidebar */
-    .categories {margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;}
-    .categories h3 {
-      font-size: 16px; color: #a44b63;
-      margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;
-    }
-    .categories a {
-      font-size: 16px; color: #444; margin: 12px 0;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .categories a i {color: #a44b63;}
-    .categories a:hover {color: #a44b63;}
-
-    /* Overlay */
-    .overlay {
-      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5); z-index: 1500;
-    }
-    .overlay.active {display: block;}
-
-    /* Category Scroll Bar (inside navbar) */
-    .category-bar {
-      display: flex; 
-      gap: 30px; 
-      overflow-x: auto;
-      white-space: nowrap;
-      padding: 10px 20px;
-      background: #fafafa;
-      border-top: 1px solid #eee;
-      scrollbar-width: none;
-    }
-    .category-bar::-webkit-scrollbar {display: none;}
-    .category-bar a {
-      text-decoration: none; 
-      color: #444; 
-      font-size: 15px; 
-      font-weight: 500;
-      display: inline-flex; 
-      align-items: center; 
-      gap: 8px;
-      transition: color 0.3s;
-      padding: 6px 10px;
-    }
-    .category-bar a i {color: #a44b63;}
-    .category-bar a:hover {color: #a44b63;}
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav-links {display: none;}
-      .hamburger {display: block;}
-    }
-
-    body {padding-top: 110px;} /* to push content below navbar */
   </style>
 
 </head>
 <body>
-
-
-  
- 
-
-
-  <!-- Navbar -->
-  <nav>
-    <!-- Top Navbar -->
-    <div class="nav-top">
-      <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
-      <div class="nav-links">
-        <a href="#">Women</a>
-        <a href="#">Men</a>
-        <a href="#">Contact Us</a>
-      </div>
-      <div class="logo">Zen<span>vora</span></div>
-      <div class="nav-icons">
-        <i class="fas fa-search" id="searchIcon"></i>
-        <i class="fas fa-user"></i>
-        <div class="cart">
-          <i class="fas fa-shopping-bag"></i>
-          <span>0</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Scroll Category Bar -->
-    <div class="category-bar">
-      <a href="#"><i class="fas fa-tshirt"></i> T-Shirts</a>
-      <a href="#"><i class="fas fa-mug-hot"></i> Mugs</a>
-      <a href="#"><i class="fas fa-mobile-alt"></i> Mobile Covers</a>
-      <a href="#"><i class="fas fa-image"></i> Photo Frames</a>
-      <a href="#"><i class="fas fa-link"></i> Chains</a>
-      <a href="#"><i class="fas fa-star"></i> New Arrivals</a>
-      <a href="#"><i class="fas fa-gift"></i> Gift Ideas</a>
-    </div>
-  </nav>
-
-  <!-- Search Bar -->
-  <div class="search-bar" id="searchBar">
-    <input type="text" placeholder="Search products...">
-    <button><i class="fas fa-search"></i></button>
-  </div>
-
-  <!-- Sidebar (Mobile) -->
+  <!-- Sidebar only for mobile -->
   <div class="sidebar" id="sidebar">
-    <a href="#">Women</a>
-    <a href="#">Men</a>
-    <a href="#">Contact Us</a>
-    <a href="#">Login</a>
+    <a href="#">Home</a>
+    <a href="#">Products</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a href="login.html">Login</a>
     <a href="#">Cart</a>
-
-    <div class="categories">
-      <h3>Shop by Category</h3>
-      <a href="#"><i class="fas fa-tshirt"></i> T-Shirts</a>
-      <a href="#"><i class="fas fa-mug-hot"></i> Mugs</a>
-      <a href="#"><i class="fas fa-mobile-alt"></i> Mobile Covers</a>
-      <a href="#"><i class="fas fa-image"></i> Photo Frames</a>
-      <a href="#"><i class="fas fa-link"></i> Chains</a>
-      <a href="#"><i class="fas fa-star"></i> New Arrivals</a>
-      <a href="#"><i class="fas fa-gift"></i> Gift Ideas</a>
-    </div>
   </div>
 
-  <!-- Overlay -->
-  <div class="overlay" id="overlay"></div>
+  <!-- Header -->
+  <header>
+    <div class="hamburger" onclick="toggleSidebar()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <div class="logo">
+      <h1>ZENV<span>ORA</span></h1>
+    </div>
+    <div class="search-box">
+      <form>
+        <input type="text" placeholder="Search for products or services...">
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </form>
+    </div>
+    <div class="header-icons">
+      <a href="login.html"><i class="fas fa-user"></i></a>
+      <a href="login emple.html"><i class="fas fa-user-plus"></i></a>
+      <a href="cart.html"><i class="fas fa-shopping-cart"></i><span class="cart-badge">2</span></a>
+    </div>
+  </header>
 
-
-
-
-
+  <!-- Scrollable menu -->
+  <div class="scroll-menu-wrapper">
+    <div class="scroll-menu">
+      <a href="coding ts.html">T-Shirts</a>
+      <a href="mug page.html">Mugs</a>
+      <a href="#">Mobile Covers</a>
+      <a href="#">Photo Frames</a>
+      <a href="#">Chains</a>
+      <a href="#">New Arrivals</a>
+      <a href="gifts.html">Gift Ideas</a>
+    </div>
+  </div>
 
   <!-- Hero section -->
   <section class="hero">
@@ -1262,7 +1082,7 @@
       <p>Discover unique personalized products like T-shirts, mugs, and more with Zenvora – your custom print brand.</p>
     </div>
     <div class="hero-image">
-      <img src="https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-414c-622f-98ab-cd6d69a31307/raw?se=2025-08-22T07%3A07%3A34Z&sp=r&sv=2024-08-04&sr=b&scid=5aca64c3-bff4-588d-9292-3b0d68f6ca70&skoid=bbd22fc4-f881-4ea4-b2f3-c12033cf6a8b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-08-21T21%3A09%3A47Z&ske=2025-08-22T21%3A09%3A47Z&sks=b&skv=2024-08-04&sig=QMApmHnhVsDeRHJlUS6Qe1AWUlanZYLeFi2v%2B7Wk4mU%3D" alt="Banner" />
+      <img src="benr.jpg" alt="Banner" />
     </div>
   </section>
   
@@ -1312,7 +1132,7 @@
 </div>
 
 
-    
+
   <section class="features">
     <div class="feature">
       <i class="fa-solid fa-gem"></i>
@@ -1357,7 +1177,7 @@
         <ul>
           <li><a href="reeturnpolicy.html">Return Policy</a></li>
           <li><a href="Privacy Policy.html">Privacy Policy</a></li>
-          <li><a href="shiping.html">Shipping Policy</a></li>
+          <li><a href="#">Shipping Policy</a></li>
           <li><a href="#">Terms of Service</a></li>
           <li><a href="concat.html">Contact Us</a></li>
           <li><a href="trck ordes.html">Track Your Order</a></li>
@@ -1404,6 +1224,7 @@
   <div class="scroll-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
     <i class="fa-solid fa-chevron-up"></i>
   </div>
+
 
 
 
@@ -1532,33 +1353,7 @@ let countdownInterval = setInterval(function () {
     }, { threshold: 0.2 });
 
     features.forEach(f => observer.observe(f));
-  
-  document.addEventListener("DOMContentLoaded", () => {
-    const hamburger = document.getElementById('hamburger');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-    const searchIcon = document.getElementById('searchIcon');
-    const searchBar = document.getElementById('searchBar');
-
-    // ✅ Sidebar toggle
-    hamburger?.addEventListener('click', () => {
-      sidebar?.classList.toggle('active');
-      overlay?.classList.toggle('active');
-    });
-
-    // ✅ Overlay click = close sidebar + search
-    overlay?.addEventListener('click', () => {
-      sidebar?.classList.remove('active');
-      overlay?.classList.remove('active');
-      searchBar?.classList.remove('active');
-    });
-
-    // ✅ Search toggle
-    searchIcon?.addEventListener('click', () => {
-      searchBar?.classList.toggle('active');
-    });
-  });
-</script>
+  </script>
 
 </body>
 </html>

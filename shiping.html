@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zenvora | Shipping Policy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0b0f14;            /* page background */
+      --card:#111827;          /* card background */
+      --muted:#6b7280;         /* muted text */
+      --text:#e5e7eb;          /* primary text */
+      --brand:#22c55e;         /* accent/brand */
+      --brand-2:#0ea5e9;       /* secondary accent */
+      --border:#1f2937;        /* borders */
+      --success:#16a34a;
+      --warning:#f59e0b;
+      --danger:#ef4444;
+      --info:#0ea5e9;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    a{color:var(--brand)}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+
+    /* Header */
+    .header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:#0c1117;font-weight:800}
+    .brand h1{font-size:20px;margin:0}
+    .actions{display:flex;gap:8px}
+    .btn{background:#0b1220;border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+    .btn:hover{border-color:#2a3648}
+    .btn.primary{background:linear-gradient(180deg,#1a2a3e,#0f1b2b);border-color:#1f2a3a}
+
+    /* Breadcrumbs */
+    .breadcrumbs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--muted);font-size:14px}
+    .breadcrumbs a{color:var(--muted);text-decoration:none}
+    .breadcrumbs .sep{opacity:.4}
+
+    /* Card */
+    .card{background:linear-gradient(180deg,#0b1220,#0b111a);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+    .card-header{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--border)}
+    .card-title{margin:0;font-size:22px;font-weight:700}
+    .badge{font-size:12px;padding:6px 10px;border:1px solid var(--border);border-radius:999px;color:var(--muted)}
+    .card-body{padding:20px}
+
+    /* Grid */
+    .grid{display:grid;gap:16px}
+    @media(min-width:900px){.grid{grid-template-columns:2fr 1fr}}
+
+    /* Sections */
+    h2{font-size:18px;margin:18px 0 8px}
+    p{line-height:1.7;color:#cfd6df}
+    .muted{color:var(--muted)}
+    .list{margin:8px 0 0;padding-left:18px;color:#cfd6df}
+
+    /* Info blocks */
+    .infobar{display:flex;gap:12px;align-items:flex-start;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);padding:14px;border-radius:12px;margin:10px 0}
+    .infobar.warning{background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.25)}
+    .infobar.info{background:rgba(14,165,233,0.08);border-color:rgba(14,165,233,0.25)}
+    .infobar .icon{min-width:28px;height:28px;display:grid;place-items:center;border-radius:8px;background:#0e1624;border:1px solid var(--border)}
+
+    /* Details/FAQ */
+    details{border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:#0b1018}
+    details+details{margin-top:10px}
+    summary{cursor:pointer;font-weight:600;list-style:none}
+    summary::-webkit-details-marker{display:none}
+
+    /* Table */
+    table{width:100%;border-collapse:separate;border-spacing:0;margin-top:8px;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+    th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:#0f1724;color:#c9d4e3;font-weight:600}
+    tr:last-child td{border-bottom:none}
+
+    /* Footer */
+    .footer{color:var(--muted);font-size:14px;padding:24px 0;border-top:1px solid var(--border);margin-top:24px}
+
+    /* Chips */
+    .chip{display:inline-flex;gap:6px;align-items:center;padding:6px 10px;border:1px solid var(--border);border-radius:999px;margin:4px 8px 0 0;background:#0b1017}
+
+    .note{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo"><i class="fa-solid fa-box"></i></div>
+        <h1>Zenvora</h1>
+      </div>
+      <div class="actions">
+        <button class="btn" onclick="window.location.href='index.html'"><i class="fa-solid fa-house"></i> Home</button>
+        <button class="btn" onclick="window.history.back()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+        <button class="btn primary" onclick="window.print()"><i class="fa-solid fa-print"></i> Print</button>
+      </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span>Policies</span>
+      <span class="sep">/</span>
+      <strong>Shipping Policy</strong>
+    </nav>
+
+    <!-- Card -->
+    <section class="card" role="document" aria-labelledby="shipTitle">
+      <div class="card-header">
+        <h2 class="card-title" id="shipTitle">Shipping Policy</h2>
+        <span class="badge" id="lastUpdated">Last updated: 22 Aug 2025</span>
+      </div>
+      <div class="card-body">
+        <div class="grid">
+          <!-- Main content -->
+          <div>
+            <div class="infobar info">
+              <div class="icon"><i class="fa-solid fa-truck"></i></div>
+              <div>
+                <strong>Made-to-order:</strong> Most Zenvora products are custom-printed after you place the order. Processing time is separate from courier transit time.
+              </div>
+            </div>
+
+            <h2>1) Processing & Dispatch</h2>
+            <p>
+              Orders are processed <strong>Mon–Sat</strong> (excluding public holidays). Standard processing time is
+              <strong>1–3 business days</strong> for most items. Bulk/complex customizations may take <strong>3–6 business days</strong>.
+            </p>
+
+            <h2>2) Estimated Delivery Timelines (India)</h2>
+            <table aria-label="Estimated delivery timelines within India">
+              <thead>
+                <tr>
+                  <th>Region</th>
+                  <th>Metro</th>
+                  <th>Non‑metro / Tier‑2/3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>North, West, South</td>
+                  <td>2–4 business days</td>
+                  <td>3–6 business days</td>
+                </tr>
+                <tr>
+                  <td>East & North‑East</td>
+                  <td>3–6 business days</td>
+                  <td>5–9 business days</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="note">Transit timelines begin after dispatch. Remote locations & weather disruptions can extend delivery times.</p>
+
+            <h2>3) Shipping Fees</h2>
+            <ul class="list">
+              <li>Standard shipping: <strong>₹59–₹99</strong> (auto‑calculated at checkout by weight/pincode).</li>
+              <li>Free shipping: orders above <strong>₹999</strong> (India only) unless otherwise stated.</li>
+              <li>Express shipping: Shown at checkout where available.</li>
+            </ul>
+
+            <h2>4) Order Tracking</h2>
+            <p>Once dispatched, you’ll receive an email/SMS with your <strong>tracking link</strong>. You can also check status from <em>My Orders</em> in your Zenvora account.</p>
+
+            <h2>5) Address Changes</h2>
+            <p>Address edits are possible <strong>before dispatch only</strong>. Contact us quickly with your Order ID.</p>
+
+            <h2>6) Delivery Attempts</h2>
+            <p>Couriers usually make <strong>2 attempts</strong>. If undelivered, the package may be returned. Re‑shipping charges may apply.</p>
+
+            <h2>7) Cash on Delivery (COD)</h2>
+            <ul class="list">
+              <li>COD availability varies by pincode and order value.</li>
+              <li>Please keep exact cash ready; open‑box/try‑and‑buy is not supported.</li>
+            </ul>
+
+            <h2>8) Damages, Missing or Lost Packages</h2>
+            <p>Inspect your order upon delivery. If an item is defective, damaged, or if you receive the wrong item, contact us within <strong>48 hours</strong> of delivery with unboxing photos/videos so we can evaluate and make it right.</p>
+
+            <h2>9) International Shipping</h2>
+            <ul class="list">
+              <li>Currently limited. Duties/taxes (if any) are payable by the recipient.</li>
+              <li>Transit estimate: <strong>7–15 business days</strong> after dispatch.</li>
+            </ul>
+
+            <h2>10) Holiday & Force Majeure Delays</h2>
+            <p>Expect additional delays during festivals, sales, or events beyond our control (weather, strikes, local restrictions).</p>
+
+            <h2>11) Multiple Shipments</h2>
+            <p>Items in the same order may ship separately to speed up delivery.</p>
+
+            <div class="infobar warning">
+              <div class="icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+              <div>
+                <strong>Heads up:</strong> Delivery timelines are estimates provided by courier partners and not guaranteed. We’ll always do our best to help if things run late.
+              </div>
+            </div>
+
+            <h2>FAQs</h2>
+            <details>
+              <summary>How do I track my order?</summary>
+              <p>Use the tracking link shared over SMS/email after dispatch or visit <em>My Orders</em> when logged in.</p>
+            </details>
+            <details>
+              <summary>Can I change my address after placing the order?</summary>
+              <p>Yes, if the order hasn’t been dispatched. Contact support with your Order ID immediately.</p>
+            </details>
+            <details>
+              <summary>Do you offer same‑day or next‑day delivery?</summary>
+              <p>Express options may appear at checkout based on your pincode and item type.</p>
+            </details>
+            <details>
+              <summary>What if my package is marked delivered but I haven’t received it?</summary>
+              <p>Please check with security/neighbor, then contact us within 24 hours so we can raise a ticket with the courier.</p>
+            </details>
+          </div>
+
+          <!-- Sidebar -->
+          <aside>
+            <div class="chip"><i class="fa-solid fa-star"></i> Free shipping > ₹999</div>
+            <div class="chip"><i class="fa-solid fa-bolt"></i> 1–3 day processing</div>
+            <div class="chip"><i class="fa-solid fa-location-dot"></i> Pan‑India coverage</div>
+
+            <h2>Preferred Couriers</h2>
+            <p class="muted">We work with reputed partners like Delhivery, Bluedart, Shadowfax, Xpressbees and India Post depending on serviceability.</p>
+
+            <h2>Support</h2>
+            <p class="muted">Have a question about your shipment? Reach us:</p>
+            <ul class="list">
+              <li>Email: <a href="mailto:care@zenvora.com">care@zenvora.com</a></li>
+              <li>Phone/WhatsApp: <a href="tel:+91XXXXXXXXXX">+91‑XXXXXXXXXX</a></li>
+              <li>Hours: Mon–Sat, 10:00–18:00 IST</li>
+            </ul>
+
+            <h2>Return/Refunds</h2>
+            <p class="muted">For return eligibility and timelines, please see our <a href="returns.html">Return & Refund Policy</a>.</p>
+          </aside>
+        </div>
+
+        <footer class="footer">
+          <div>
+            © <span id="year"></span> Zenvora. All rights reserved. | This Shipping Policy is part of our <a href="terms.html">Terms & Conditions</a> and <a href="privacy.html">Privacy Policy</a>.
+          </div>
+        </footer>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Optional: If you want to auto-format the last updated date via JS, replace the static text
+    // document.getElementById('lastUpdated').textContent = `Last updated: ${new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}`;
+  </script>
+</body>
+</html>
