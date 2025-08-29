@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple Test Form → Google Sheets</title>
+  <style>
+    body{font-family:system-ui, Arial; background:#f5f7fb; margin:0; padding:24px;}
+    .card{max-width:520px; margin:auto; background:#fff; padding:18px 18px 24px;
+      border-radius:12px; box-shadow:0 6px 24px rgba(0,0,0,.08);}
+    h1{font-size:20px; margin:0 0 12px;}
+    .row{margin-bottom:12px;}
+    label{display:block; font-weight:600; margin-bottom:6px;}
+    input, textarea{width:100%; padding:10px; border:1px solid #dcdfe4; border-radius:8px; font-size:14px;}
+    button{width:100%; padding:12px; border:0; border-radius:10px; cursor:pointer; font-size:16px;
+      background:#ff6f00; color:#fff;}
+    button:disabled{opacity:.6; cursor:not-allowed;}
+    .msg{margin-top:12px; font-size:14px;}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Test Form → Google Sheets</h1>
+
+    <form id="testForm">
+      <div class="row">
+        <label>पूरा नाम</label>
+        <input type="text" name="fullname" required />
+      </div>
+
+      <div class="row">
+        <label>ईमेल</label>
+        <input type="email" name="email" required />
+      </div>
+
+      <div class="row">
+        <label>संदेश</label>
+        <textarea name="message" rows="3" required></textarea>
+      </div>
+
+      <button type="submit" id="btn">Submit</button>
+      <div class="msg" id="status"></div>
+    </form>
+  </div>
+
+  <script>
+    // ⬇️ यहां अपना Google Apps Script Web App URL पेस्ट करें
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwxhwN3tTAklSag6PJR-WjrILE2-9HUVb2HekZPwHuAt5s6SeeuYbNnJrUnkLVXzw2Clw/exec";
+
+    const form = document.getElementById("testForm");
+    const status = document.getElementById("status");
+    const btn = document.getElementById("btn");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      status.textContent = "Sending...";
+      btn.disabled = true;
+
+      // फॉर्म डेटा ऑब्जेक्ट
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
+      payload.date = new Date().toLocaleString(); // timestamp भी भेज दें
+
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        const text = await res.text();
+        if (res.ok && /success/i.test(text)) {
+          status.textContent = "✅ Saved to Google Sheet!";
+          form.reset();
+        } else {
+          status.textContent = "❌ Failed: " + text;
+        }
+      } catch (err) {
+        status.textContent = "❌ Network/Error: " + err.message;
+        console.error(err);
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
